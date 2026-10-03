@@ -1,0 +1,24 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:PretBlk;src:url(fonts/Pretendard-Black.otf)}
+@font-face{font-family:PretXB;src:url(fonts/Pretendard-ExtraBold.otf)}
+@font-face{font-family:Gowun;src:url(fonts/GowunBatang-Bold.ttf)}
+</style></head><body>
+<script type="module">
+import * as D from './js/design.js';
+const fams=['PretBlk','PretXB','Gowun']; await Promise.all(fams.map(f=>document.fonts.load(`40px ${f}`,'가나다')));
+const logo=await new Promise(r=>{const i=new Image(); i.onload=()=>r(i); i.src='img/logo_hi.png';});
+function mk(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
+const A=mk(D.DW,D.DH); D.drawImageA(A.getContext('2d'),logo);
+const B=mk(D.DW,D.DH); D.drawImageB(B.getContext('2d'),logo);
+const ta=D.sampleTiles(A,D.PALETTES.A), tb=D.sampleTiles(B,D.PALETTES.B);
+const sch=D.buildSchedule(ta.idx,ta.pal);
+function tiles(t){const c=mk(D.NX*5,D.NY*5),g=c.getContext('2d');g.fillStyle='#776';g.fillRect(0,0,c.width,c.height);
+ for(let k=0;k<D.N;k++){const i=k%D.NX,j=Math.floor(k/D.NX);g.fillStyle=`rgb(${t.rgb[k*3]},${t.rgb[k*3+1]},${t.rgb[k*3+2]})`;g.fillRect(i*5,j*5,4.4,4.4);} return c;}
+function growth(tt){const c=mk(D.NX*2,D.NY*2),g=c.getContext('2d');g.fillStyle='#ddd2bf';g.fillRect(0,0,c.width,c.height);
+ for(let k=0;k<D.N;k++){ if(sch.tLand[k]>tt) continue; const i=k%D.NX,j=Math.floor(k/D.NX);g.fillStyle=`rgb(${ta.rgb[k*3]},${ta.rgb[k*3+1]},${ta.rgb[k*3+2]})`;g.fillRect(i*2,j*2,2,2);} return c;}
+const gt=D.groundTexture(logo);
+window.out={A:A.toDataURL(),B:B.toDataURL(),TA:tiles(ta).toDataURL(),TB:tiles(tb).toDataURL(),G:gt.toDataURL(),
+ g5:growth(5).toDataURL(),g7:growth(7).toDataURL(),g9:growth(9).toDataURL(), seed:[sch.si,sch.sj], counts:[3,5,7,9,11].map(D.countAt)};
+window.READY=true;
+</script></body></html>

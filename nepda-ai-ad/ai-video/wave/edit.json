@@ -1,0 +1,24 @@
+{
+  "_help": "「거대한 혜택이 밀려온다」 편집표. in/out=원본 클립에서 쓸 구간(초), vol=클립 자체 소리, sfx=컷 시작 기준 효과음(t초), shake=화면 흔들림",
+  "output": "거대한혜택이밀려온다_9x16.mp4",
+  "fps": 24,
+  "showQuestion": false,
+  "showCaptions": false,
+  "grade": true,
+  "drone": [0.3, 5.4],
+  "music": { "start": 6.4, "bpm": 124 },
+  "shots": [
+    { "file": "clips/w1_meteor.mp4", "in": 0.0, "out": 2.0, "vol": 0.3, "label": "우주: 초록 불덩이(택이)가 대기권 진입",
+      "sfx": [{ "t": 0.0, "type": "meteor", "gain": 0.9, "shake": 0.35 }] },
+    { "file": "clips/w2_impact.mp4", "in": 0.0, "out": 3.0, "vol": 0.5, "label": "해운대: 수평선에 풍덩, 거대한 물기둥",
+      "sfx": [{ "t": 1.4, "type": "thump", "gain": 1.0, "shake": 1.0 }] },
+    { "file": "clips/w3_wave.mp4",   "in": 0.0, "out": 3.4, "vol": 0.4, "label": "수평선의 거대한 파도 = 선물상자 파도",
+      "sfx": [{ "t": 0.1, "type": "braam", "gain": 0.9, "shake": 0.3 }] },
+    { "file": "clips/w4_welcome.mp4","in": 0.0, "out": 3.2, "vol": 0.7, "label": "장바구니·대야로 마중 → 와르르 환호" },
+    { "file": "clips/w5_taki.mp4",   "in": 0.0, "out": 2.6, "vol": 0.3, "label": "바다에 둥둥 뜬 택이 윙크",
+      "sfx": [{ "t": 1.5, "type": "boing", "gain": 0.9 }] },
+    { "type": "card", "card": "거대한 혜택이\n밀려온다", "cardSize": 150, "in": 0, "out": 1.8, "label": "카드",
+      "sfx": [{ "t": 0.0, "type": "thump", "gain": 0.8, "shake": 0 }] }
+  ],
+  "endcard": 5.0
+}

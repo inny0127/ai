@@ -9,7 +9,10 @@ import { createRequire } from 'node:module';
 const require = createRequire('/opt/node22/lib/node_modules/');
 const { chromium } = require('playwright');
 
-const ROOT = path.dirname(new URL(import.meta.url).pathname), BASE = path.resolve(ROOT, '../..');
+// --project <폴더>: 다른 콘티 폴더(edit.json·clips·out)를 같은 엔진으로 편집
+const TOOL = path.dirname(new URL(import.meta.url).pathname), BASE = path.resolve(TOOL, '../..');
+const pi = process.argv.indexOf('--project');
+const ROOT = pi > 0 ? path.resolve(process.argv[pi + 1]) : TOOL;
 const OUT = path.join(ROOT, 'out'), AUD = path.join(ROOT, 'audio');
 fs.mkdirSync(OUT, { recursive: true }); fs.mkdirSync(AUD, { recursive: true });
 const cfg = JSON.parse(fs.readFileSync(path.join(ROOT, 'edit.json'), 'utf8'));
@@ -98,10 +101,10 @@ await browser.close(); server.close();
 
 // --- 4. 사운드: 클립 현장음 + 사운드 디자인(쿵·브아아암·드론·정적·뾰옹·징글)
 const lastEvent = events.filter(e => e.type === 'braam').at(-1)?.t ?? end0;
-execFileSync('python3', [path.join(ROOT, 'synth.py'), JSON.stringify({ events, total, end0, drone: [shots[1]?.t0 ?? 1, silence[0]?.[0] ?? lastEvent + 2], silence })], { stdio: 'inherit' });
+execFileSync('python3', [path.join(TOOL, 'synth.py'), JSON.stringify({ events, total, end0, drone: cfg.drone === null ? null : (cfg.drone || [shots[1]?.t0 ?? 1, silence[0]?.[0] ?? lastEvent + 2]), silence, music: cfg.music || null }), AUD], { stdio: 'inherit' });
 const sfx = fs.existsSync(path.join(AUD, 'eleven_comes.mp3')) ? path.join(AUD, 'eleven_comes.mp3') : path.join(AUD, 'comes_sfx.wav');
 const mute = silence.map(([a, b]) => `volume=enable='between(t,${a},${b})':volume=0`).join(',') || 'anull';
-const final = path.join(OUT, '그것이온다_9x16.mp4');
+const final = path.join(OUT, cfg.output || '그것이온다_9x16.mp4');
 await run(['-i', video, '-i', baseVid, '-i', sfx, '-filter_complex',
   `[1:a]aresample=48000,${mute}[amb];[2:a]aresample=48000,aformat=channel_layouts=stereo[fx];[amb][fx]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.9[a]`,
   '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', '-movflags', '+faststart', '-shortest', final]);

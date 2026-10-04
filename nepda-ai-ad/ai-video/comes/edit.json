@@ -1,0 +1,29 @@
+{
+  "_help": "「그것이 온다」 편집표. in/out=원본 클립에서 쓸 구간(초), vol=클립 자체 소리 크기, sfx=컷 시작 기준 효과음(t초), shake=그 순간 화면 흔들림 세기",
+  "fps": 24,
+  "showQuestion": false,
+  "showCaptions": false,
+  "grade": true,
+  "shots": [
+    { "file": "clips/c0_shadow.mp4",   "in": 0.0, "out": 2.4, "vol": 0.6, "label": "그림자가 횡단보도를 덮침",
+      "sfx": [{ "t": 0.3, "type": "thump", "gain": 1.0, "shake": 1.0 }] },
+    { "file": "clips/c1_lookup.mp4",   "in": 0.0, "out": 1.6, "vol": 0.3, "label": "군중이 하늘을 올려다봄 (슬로모)" },
+    { "file": "clips/c2_cup.mp4",      "in": 0.0, "out": 1.0, "vol": 0.2, "label": "물컵 파문",
+      "sfx": [{ "t": 0.1, "type": "thump", "gain": 0.6, "shake": 0.3 }] },
+    { "file": "clips/c3_pigeons.mp4",  "in": 0.0, "out": 1.0, "vol": 0.8, "label": "비둘기 떼 이륙" },
+    { "file": "clips/c4_river.mp4",    "in": 0.0, "out": 1.3, "vol": 0.3, "label": "한강 탑뷰 거대 파문",
+      "sfx": [{ "t": 0.1, "type": "thump", "gain": 0.75, "shake": 0.4 }] },
+    { "file": "clips/c5_signal.mp4",   "in": 0.0, "out": 0.8, "vol": 0.3, "label": "신호등 흔들림",
+      "sfx": [{ "t": 0.05, "type": "thump", "gain": 0.85, "shake": 0.6 }] },
+    { "file": "clips/c6_cars.mp4",     "in": 0.0, "out": 0.9, "vol": 0.9, "label": "주차장 차들 경보",
+      "sfx": [{ "t": 0.05, "type": "thump", "gain": 0.95, "shake": 0.8 }] },
+    { "file": "clips/c7_mountain.mp4", "in": 0.0, "out": 2.8, "vol": 0.2, "label": "산 능선이 움직임 (망원)",
+      "sfx": [{ "t": 0.15, "type": "braam", "gain": 1.0, "shake": 0.25 }] },
+    { "file": "clips/c8_eye.mp4",      "in": 0.0, "out": 2.2, "vol": 0.0, "label": "골목 끝 거대한 눈 (정적)", "silence": true },
+    { "file": "clips/c9_reveal.mp4",   "in": 0.0, "out": 2.2, "vol": 0.3, "label": "줌아웃 → 택이 윙크",
+      "sfx": [{ "t": 1.25, "type": "boing", "gain": 0.9 }] },
+    { "type": "card", "card": "10.26", "in": 0, "out": 1.5, "label": "날짜 카드",
+      "sfx": [{ "t": 0.0, "type": "thump", "gain": 1.0, "shake": 0 }] }
+  ],
+  "endcard": 5.0
+}

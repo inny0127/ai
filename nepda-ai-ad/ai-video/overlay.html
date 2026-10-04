@@ -138,10 +138,20 @@ function drawEnd(t) {
   if (lt < 0.18) { x.fillStyle = `rgba(255,255,255,${1 - lt / 0.18})`; x.fillRect(0, 0, W, H); }
 }
 
+// 예고편식 날짜 카드: 검은 화면에 큰 숫자가 쿵
+function drawCard(t, s) {
+  const lt = t - s.t0;
+  x.fillStyle = '#000'; x.fillRect(0, 0, W, H);
+  const a = ease(lt / 0.12), sc = 1.12 - 0.12 * ease(lt / 0.5) + 0.03 * lt;
+  x.save(); x.globalAlpha = a; x.translate(W / 2, H / 2); x.scale(sc, sc);
+  strokeText(s.card, 0, 0, s.cardSize || 230, '#fff', null, 0, 900);
+  x.restore();
+}
 window.drawAt = t => {
   x.clearRect(0, 0, W, H);
   if (t >= TL.end0) return drawEnd(t);
   const s = TL.find(s => t >= s.t0 && t < s.t1) || TL[TL.length - 1];
+  if (s.type === 'card') return drawCard(t, s);
   if (s.type === 'finale') {
     if (CFG.showCaptions) drawEarth(t, s);
     const k = TL.end0 - t; if (k < 0.12) { x.fillStyle = `rgba(255,255,255,${1 - k / 0.12})`; x.fillRect(0, 0, W, H); }

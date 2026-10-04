@@ -1,5 +1,5 @@
 {
-  "_help": "「거대한 혜택이 밀려온다」 최종 편집표. Dreamina 클립(clips/w1~w6)을 넣으면 이 타이밍으로 편집돼요. in/out은 클립 받은 뒤 조정",
+  "_help": "「거대한 혜택이 밀려온다」 최종 편집표 (v2 멀티샷). Dreamina 생성 A·B·C(clips/genA·genB·genC.mp4)를 샷별 in/out으로 잘라 씀. in/out은 클립 받은 뒤 실제 컷 위치에 맞춰 조정",
   "output": "거대한혜택이밀려온다_9x16.mp4",
   "fps": 24,
   "showQuestion": false,
@@ -11,9 +11,9 @@
   "sfxGain": 0.8,
   "shots": [
     {
-      "file": "clips/w1_meteor.mp4",
-      "in": 0.2,
-      "out": 2.2,
+      "file": "clips/genA.mp4",
+      "in": 0.0,
+      "out": 2.0,
       "vol": 0.5,
       "sfx": [
         {
@@ -25,9 +25,9 @@
       ]
     },
     {
-      "file": "clips/w2a_faces.mp4",
-      "in": 0.2,
-      "out": 3.2,
+      "file": "clips/genA.mp4",
+      "in": 2.1,
+      "out": 5.0,
       "vol": 0.5,
       "sfx": [
         {
@@ -39,9 +39,9 @@
       ]
     },
     {
-      "file": "clips/w2_impact.mp4",
-      "in": 3.5,
-      "out": 7.0,
+      "file": "clips/genA.mp4",
+      "in": 5.1,
+      "out": 9.6,
       "vol": 0.5,
       "sfx": [
         {
@@ -51,7 +51,7 @@
           "shake": 0.4
         },
         {
-          "t": 2.8,
+          "t": 2.9,
           "type": "thump",
           "gain": 1.0,
           "shake": 1.0
@@ -59,15 +59,15 @@
       ]
     },
     {
-      "file": "clips/w3_wave.mp4",
-      "in": 0.3,
-      "out": 2.8,
+      "file": "clips/genB.mp4",
+      "in": 0.2,
+      "out": 2.5,
       "vol": 0.5
     },
     {
-      "file": "clips/w3b_side.mp4",
-      "in": 0.3,
-      "out": 2.3,
+      "file": "clips/genB.mp4",
+      "in": 3.1,
+      "out": 4.9,
       "vol": 0.5,
       "sfx": [
         {
@@ -79,9 +79,9 @@
       ]
     },
     {
-      "file": "clips/w4_welcome.mp4",
-      "in": 0.3,
-      "out": 3.8,
+      "file": "clips/genB.mp4",
+      "in": 5.3,
+      "out": 8.6,
       "vol": 0.5,
       "sfx": [
         {
@@ -105,29 +105,29 @@
       ]
     },
     {
-      "file": "clips/w5_taki.mp4",
+      "file": "clips/genC.mp4",
       "in": 0.3,
       "out": 4.3,
       "vol": 0.5,
       "sfx": [
         {
-          "t": 2.0,
+          "t": 1.7,
           "type": "boing",
           "gain": 0.8
         }
       ],
       "text": {
         "str": "거대한 혜택이\n밀려온다",
-        "at": 2.0,
-        "until": 4.0,
+        "at": 1.7,
+        "until": 3.8,
         "size": 118,
         "y": 1520
       }
     },
     {
-      "file": "clips/w6_aerial.mp4",
-      "in": 0.0,
-      "out": 9.0,
+      "file": "clips/genC.mp4",
+      "in": 5.2,
+      "out": 13.9,
       "vol": 0.5,
       "sfx": [
         {
@@ -172,8 +172,8 @@
           0.35
         ],
         [
-          21.4,
-          22.8,
+          21.7,
+          23.1,
           0.5
         ]
       ]
@@ -200,9 +200,9 @@
     },
     {
       "file": "voice/brand_call.wav",
-      "at": 21.6,
+      "at": 21.9,
       "gain": 1.5
     }
   ],
-  "_music": "차라투스트라 한 곡: 1.5초부터 서주('밤!'=7.8초 착지), 10.8초 클라이맥스로 크로스페이드(70.7초 '쾅'=14.3초 제품 낙하, 77.5초 정점=21.1초 KV)"
+  "_music": "차라투스트라 한 곡: 1.5초부터 서주('밤!'=7.8초 착지), 10.8초 클라이맥스로 크로스페이드(70.7초 '쾅'=14.3초 제품 낙하, 77.5초 정점=21.1초, KV 21.8초)"
 }

@@ -4,17 +4,17 @@
 > 이 문서만 위에서부터 따라 하면 돼요. 프롬프트는 전부 **통째로 복사**하면 돼요.
 > ⚠️ Dreamina 화면은 자주 바뀌어서 **버튼 이름이 조금 다를 수 있어요.** 기능 기준으로 비슷한 이름을 찾으면 돼요.
 
-## 한눈에 보는 콘티 (약 21초)
+## 한눈에 보는 콘티 (29.5초)
 
 | 시간 | 장면 | 소리 (Claude가 편집에서) |
 |---|---|---|
-| 0~2초 | 우주에서 초록 불덩이(택이)가 한반도 대기권으로 | 굉음 |
-| 2~5초 | 해운대 해변, 수평선에 풍덩 → 거대한 물기둥 | **쿵!** |
-| 5~8.4초 | 수평선에 솟는 거대한 파도… 가까이 보면 **선물상자 파도** | 브아아암 → 신나는 비트 |
-| 8.4~11.6초 | 장바구니·대야·쇼핑백으로 마중 → 와르르 덮치고 환호 | 비트 + 환호 |
-| 11.6~14.2초 | 바다에 둥둥 뜬 택이 윙크 | 뾰옹 |
-| 14.2~16초 | 검은 화면 카드: **거대한 혜택이 밀려온다** | 쿵 |
-| 16~21초 | KV 엔드카드 + 10.26 ~ 11.8 + 검색창 | 징글 |
+| 0~3.5초 | 우주: 초록 불덩이(택이)가 한반도 대기권을 뚫고 들어와요 | 굉음 두 번 |
+| 3.5~8초 | 해운대: 사람들이 하늘을 가리키다가 → 수평선에 풍덩 → 거대한 물기둥, 충격파 | **쿵!** |
+| 8~13초 | 수평선에 솟는 거대한 파도… 다가올수록 **선물상자 파도**인 게 보여요 | 브아아암 → 10초부터 신나는 비트 |
+| 13~18초 | 장바구니·대야·쇼핑백 들고 기다림 → 와르르 덮침 → 선물 더미에서 환호하며 튀어나옴 | 비트 + 환호 |
+| 18~22초 | 바다에 둥둥 뜬 택이가 카메라를 보고 윙크 | 뾰옹 |
+| 22~24.5초 | 검은 화면 카드: **거대한 혜택이 밀려온다** | 쿵 |
+| 24.5~29.5초 | KV 엔드카드 + 10.26 ~ 11.8 + 검색창 | 징글 |
 
 AI로 만드는 컷은 **5개**뿐이에요. 카드와 엔드카드, 모든 소리는 Claude가 편집에서 만들어요.
 
@@ -61,16 +61,17 @@ Dreamina에는 이번에 쓸 작업 공간이 **2개** 있어요.
 ## 3. 크레딧 예산
 
 - Basic 첫 달 크레딧 **1,575개**
-- Seedance 2.5 720p 4초 ≈ **약 150크레딧** (정확한 숫자는 Generate 옆에 표시돼요)
+- Seedance 2.5 720p는 대략 **초당 37크레딧**이에요 (정확한 숫자는 Generate 옆에 표시돼요)
 
-| 항목 | 개수 | 크레딧(대략) |
+| 항목 | 내용 | 크레딧(대략) |
 |---|---|---|
 | 키프레임 이미지 | 약 10~15장 | 약 50~150 |
-| 영상 5컷 × 1~2번 (4초, 720p) | 5~10개 | 약 750~1,500 |
-| **합계** | | **Basic 안에 들어와요** ✅ |
+| 영상 5컷 1번씩 | 5+6+6+6+5 = 28초 | 약 1,040 |
+| 컷 3 한 번 더 (제일 어려움) | 6초 | 약 220 |
+| **합계** | | **약 1,300~1,400 → Basic에 딱 들어와요** |
 
-- 컷 3(선물상자 파도)이 제일 어려우니 **2번 뽑을 여유**를 남겨 두세요.
-- 크레딧이 남으면 컷 1·3을 **1080p**로 다시 뽑으면 더 좋아요.
+- 여유가 거의 없으니 **키프레임을 충분히 다듬은 뒤** 영상을 뽑으세요. 키프레임이 좋으면 영상은 한 번에 나오는 경우가 많아요.
+- 모자라면 컷 2·4는 480p로 뽑거나, Standard(첫 달 $22)로 올리면 돼요.
 
 ---
 
@@ -105,7 +106,7 @@ Dreamina에는 이번에 쓸 작업 공간이 **2개** 있어요.
 4. 설정
    - **Aspect ratio 9:16** (이미지를 넣으면 이미지 비율을 따라가기도 해요)
    - **Resolution 720p**
-   - **Duration 4s**
+   - **Duration: 컷별 표대로 (5초 또는 6초)** — 편집에서 쓸 길이보다 조금 길게 뽑아요
    - **Audio / Sound: 켜기** (현장음이 같이 나와요. 편집에서 작게 깔아요)
 5. 그 컷의 **[영상 생성] 프롬프트** 붙여넣기
 6. **Generate 옆 크레딧 숫자 확인** → Generate
@@ -126,15 +127,16 @@ Dreamina에는 이번에 쓸 작업 공간이 **2개** 있어요.
 
 ## 6. 컷별 레시피 (순서대로)
 
-> 공통: 키프레임은 **AI Image (Seedream, 9:16, 2K)** / 영상은 **AI Video (Seedance 2.5, 9:16, 720p, 4초, 소리 켜기)**
+> 공통: 키프레임은 **AI Image (Seedream, 9:16, 2K)** / 영상은 **AI Video (Seedance 2.5, 9:16, 720p, 소리 켜기)**, 길이는 컷별 표대로
+> 영상 프롬프트에 `0–2s:` 같은 **시간대별 동작**을 넣었어요. 길어진 컷이 늘어지지 않게 하려는 거예요.
 > **컷 1부터** 하세요. 컷 1이 나오면 Claude에게 먼저 보여 주세요.
 
-### 컷 1 — 우주: 초록 불덩이(택이)가 대기권 진입 (2초) ★ 훅
+### 컷 1 — 우주: 초록 불덩이(택이)가 대기권 진입 (3.5초) ★ 훅
 
 | 항목 | 값 |
 |---|---|
 | 영상 모드 | **이미지 → 영상** (첫 프레임 1장) |
-| 길이 | 4초 |
+| 길이 | **5초** |
 | 파일 이름 | `w1_meteor.mp4` |
 
 **1) 키프레임 만들기** (AI Image — **택이 참고 이미지 2장 첨부**)
@@ -144,17 +146,17 @@ View from low Earth orbit over the Korean Peninsula and the surrounding sea at g
 
 **2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
 ```
-The green fireball streaks diagonally down through the atmosphere toward the southeast coast of Korea, trailing green fire and sparks; the camera tracks it slightly. Epic and fast. Sound: a rising roar. No text.
+0–2s: the glowing green fireball plunges deeper into the atmosphere, its flames and green plasma trail growing brighter and larger. 2–5s: it pierces through the clouds and streaks diagonally down toward the southeast coast of Korea, trailing green fire and sparks; the camera tracks it. Epic and fast. Sound: a rising roar. No text.
 ```
 
 ---
 
-### 컷 2 — 해운대: 수평선에 풍덩, 거대한 물기둥 (3초)
+### 컷 2 — 해운대: 수평선에 풍덩, 거대한 물기둥 (4.5초)
 
 | 항목 | 값 |
 |---|---|
 | 영상 모드 | **이미지 → 영상** (첫 프레임 1장) |
-| 길이 | 4초 |
+| 길이 | **6초** |
 | 파일 이름 | `w2_impact.mp4` |
 
 **1) 키프레임 만들기** (AI Image)
@@ -164,17 +166,17 @@ Wide shot from Haeundae beach in Busan on a bright afternoon, camera low on the 
 
 **2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
 ```
-The green fireball plunges into the sea at the horizon and a colossal column of glowing green water shoots up into the sky; a shockwave ripples across the sea; the people on the beach flinch and shield their eyes, hats and sand blown by a gust of wind. Locked-off wide camera. Sound: a distant deep boom. No text.
+0–2s: calm beach; the people look up and point at the green streak of light descending across the sky. 2–3s: the fireball plunges into the sea at the horizon. 3–6s: a colossal column of glowing green water shoots up into the sky and a shockwave ripples across the sea toward the beach; the people flinch and shield their eyes, hats and sand blown by a gust of wind. Locked-off wide camera. Sound: a distant deep boom. No text.
 ```
 
 ---
 
-### 컷 3 — 수평선의 거대한 파도 = 선물상자 파도 (3.4초) ★ 반전
+### 컷 3 — 수평선의 거대한 파도 = 선물상자 파도 (5초) ★ 반전
 
 | 항목 | 값 |
 |---|---|
 | 영상 모드 | **이미지 → 영상** (첫 프레임 1장) |
-| 길이 | 4초 |
+| 길이 | **6초** |
 | 파일 이름 | `w3_wave.mp4` |
 
 **1) 키프레임 만들기** (AI Image)
@@ -184,17 +186,17 @@ From Haeundae beach looking out to sea: a colossal wave as tall as skyscrapers r
 
 **2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
 ```
-The colossal wave of gift boxes rises higher and rolls toward the beach, boxes tumbling and glittering in the sun; the camera slowly pushes in. Joyful and spectacular, not scary. No text.
+0–2s: the colossal wave on the horizon swells and rises even higher, glittering in the sun. 2–6s: it rolls toward the beach and, as it gets closer, it is clearly made of thousands of gift boxes wrapped in neon-green and violet ribbons and shopping bags, tumbling and sparkling like confetti; the camera slowly pushes in. Joyful and spectacular, not scary. No text.
 ```
 
 ---
 
-### 컷 4 — 장바구니·대야로 마중 → 와르르 환호 (3.2초)
+### 컷 4 — 장바구니·대야로 마중 → 와르르 환호 (5초)
 
 | 항목 | 값 |
 |---|---|
 | 영상 모드 | **이미지 → 영상** (첫 프레임 1장) |
-| 길이 | 4초 |
+| 길이 | **6초** |
 | 파일 이름 | `w4_welcome.mp4` |
 
 **1) 키프레임 만들기** (AI Image)
@@ -204,17 +206,17 @@ Medium-wide shot from behind a row of excited Korean people standing on Haeundae
 
 **2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
 ```
-The wave of gift boxes softly crashes over the beach; boxes tumble gently everywhere and pile up; the people cheer, jump and pop up out of the pile laughing and holding boxes; nobody is hurt. Playful and joyful. Sound: a cheering crowd, soft thuds of boxes. No text.
+0–2s: the people brace excitedly, holding their bags and basin wide open; the grandmother pulls her visor down. 2–4s: the wave of gift boxes softly crashes over them and boxes tumble gently everywhere, piling up. 4–6s: they pop up out of the pile laughing and cheering, holding boxes high in the air; nobody is hurt. Playful and joyful. Sound: a cheering crowd, soft thuds of boxes. No text.
 ```
 
 ---
 
-### 컷 5 — 바다에 둥둥 뜬 택이 윙크 (2.6초)
+### 컷 5 — 바다에 둥둥 뜬 택이 윙크 (4초)
 
 | 항목 | 값 |
 |---|---|
 | 영상 모드 | **이미지 → 영상** (첫 프레임 1장) |
-| 길이 | 4초 |
+| 길이 | **5초** |
 | 파일 이름 | `w5_taki.mp4` |
 
 **1) 키프레임 만들기** (AI Image — **택이 참고 이미지 2장 첨부**)
@@ -224,7 +226,7 @@ Calm sparkling sea off Haeundae beach in golden afternoon light. The colossal gr
 
 **2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
 ```
-The giant character bobs gently in the waves, turns to the camera and gives a playful wink; the eyes on its purple pouch blink too. Cute and friendly. Sound: gentle waves and a cute pop. No text.
+0–2s: the giant character bobs gently in the waves, water dripping off its glossy head, gift boxes floating around it. 2–3.5s: it slowly turns to look straight at the camera. 3.5–5s: it gives a playful wink and the eyes on its purple pouch blink too. Cute and friendly. Sound: gentle waves and a cute pop. No text.
 ```
 
 ---

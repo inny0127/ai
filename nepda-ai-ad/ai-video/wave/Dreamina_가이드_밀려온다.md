@@ -1,6 +1,6 @@
 # Dreamina 완전 가이드 — 「거대한 혜택이 밀려온다」
 
-> 택이가 운석처럼 지구로 떨어져 부산 앞바다에 풍덩 → 수평선에 솟은 파도는… **선물상자 파도** → 사람들은 장바구니로 마중 → 바다에 뜬 택이 윙크 → **"거대한 혜택이 밀려온다"** → KV
+> 택이가 운석처럼 지구로 떨어져 부산 앞바다에 풍덩 → 수평선에 솟은 거대한 파도 속에… **TV·노트북·폰 같은 상품들이 가득** → 사람들은 장바구니로 마중 → 바다에 뜬 택이 윙크 → **"거대한 혜택이 밀려온다"** → KV
 > 이 문서만 위에서부터 따라 하면 돼요. 프롬프트는 전부 **통째로 복사**하면 돼요.
 > ⚠️ Dreamina 화면은 자주 바뀌어서 **버튼 이름이 조금 다를 수 있어요.** 기능 기준으로 비슷한 이름을 찾으면 돼요.
 
@@ -10,8 +10,8 @@
 |---|---|---|
 | 0~3.5초 | 우주: 초록 불덩이(택이)가 한반도 대기권을 뚫고 들어와요 | 굉음 두 번 |
 | 3.5~8초 | 해운대: 사람들이 하늘을 가리키다가 → 수평선에 풍덩 → 거대한 물기둥, 충격파 | **쿵!** |
-| 8~13초 | 수평선에 솟는 거대한 파도… 다가올수록 **선물상자 파도**인 게 보여요 | 브아아암 → 10초부터 신나는 비트 |
-| 13~18초 | 장바구니·대야·쇼핑백 들고 기다림 → 와르르 덮침 → 선물 더미에서 환호하며 튀어나옴 | 비트 + 환호 |
+| 8~13초 | 수평선에 솟는 거대한 물 파도… 다가올수록 **투명한 물속에 TV·노트북·폰·냉장고가 떠 있는 게** 보여요 | 브아아암 → 10초부터 신나는 비트 |
+| 13~18초 | 장바구니·대야·쇼핑백 들고 기다림 → 파도가 발목 높이로 부드럽게 밀려와 상품들을 모래 위에 내려놓음 → 환호하며 줍기 | 비트 + 환호 |
 | 18~22초 | 바다에 둥둥 뜬 택이가 카메라를 보고 윙크 | 뾰옹 |
 | 22~24.5초 | 검은 화면 카드: **거대한 혜택이 밀려온다** | 쿵 |
 | 24.5~29.5초 | KV 엔드카드 + 10.26 ~ 11.8 + 검색창 | 징글 |
@@ -67,7 +67,7 @@ Dreamina에는 이번에 쓸 작업 공간이 **2개** 있어요.
 |---|---|---|
 | 키프레임 이미지 | 약 10~15장 | 약 50~150 |
 | 영상 5컷 1번씩 | 5+6+6+6+5 = 28초 | 약 1,040 |
-| 컷 3 한 번 더 (제일 어려움) | 6초 | 약 220 |
+| 컷 3(상품이 든 파도) 한 번 더 (제일 어려움) | 6초 | 약 220 |
 | **합계** | | **약 1,300~1,400 → Basic에 딱 들어와요** |
 
 - 여유가 거의 없으니 **키프레임을 충분히 다듬은 뒤** 영상을 뽑으세요. 키프레임이 좋으면 영상은 한 번에 나오는 경우가 많아요.
@@ -171,7 +171,7 @@ Wide shot from Haeundae beach in Busan on a bright afternoon, camera low on the 
 
 ---
 
-### 컷 3 — 수평선의 거대한 파도 = 선물상자 파도 (5초) ★ 반전
+### 컷 3 — 거대한 물 파도 속에 상품들이 가득 (5초) ★ 반전
 
 | 항목 | 값 |
 |---|---|
@@ -181,17 +181,17 @@ Wide shot from Haeundae beach in Busan on a bright afternoon, camera low on the 
 
 **1) 키프레임 만들기** (AI Image)
 ```
-From Haeundae beach looking out to sea: a colossal wave as tall as skyscrapers rises on the horizon, and the wave is made entirely of thousands of gift boxes wrapped in glossy neon-green and violet ribbons, mixed with shopping bags, all glittering in the sunlight like confetti. The sea in front is bright blue; tiny people stand on the beach in the foreground. Whimsical yet photorealistic, epic scale. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
+From Haeundae beach looking out to sea: a colossal turquoise ocean wave as tall as skyscrapers rises on the horizon, its curling face backlit by the sun so the water is crystal clear and translucent. Suspended inside the glowing water, clearly visible like objects in glass, are hundreds of shopping products: flat-screen TVs, laptops, smartphones, headphones, a refrigerator, a washing machine, sneakers, game consoles, robot vacuums and handbags, all unbranded with no logos. Tiny people stand on the beach in the foreground. Spectacular, whimsical yet photorealistic, epic scale. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
 ```
 
 **2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
 ```
-0–2s: the colossal wave on the horizon swells and rises even higher, glittering in the sun. 2–6s: it rolls toward the beach and, as it gets closer, it is clearly made of thousands of gift boxes wrapped in neon-green and violet ribbons and shopping bags, tumbling and sparkling like confetti; the camera slowly pushes in. Joyful and spectacular, not scary. No text.
+0–2s: the colossal translucent wave on the horizon swells and rises even higher, sunlight shining through it. 2–6s: it rolls toward the beach and, as it gets closer, the products floating inside the clear water become clearly visible — TVs, laptops, smartphones, headphones, a refrigerator, sneakers — tumbling slowly in the glowing turquoise water; the camera slowly pushes in. Spectacular and joyful, not scary, no destruction. No logos. No text.
 ```
 
 ---
 
-### 컷 4 — 장바구니·대야로 마중 → 와르르 환호 (5초)
+### 컷 4 — 장바구니·대야로 마중 → 상품이 밀려와 환호 (5초)
 
 | 항목 | 값 |
 |---|---|
@@ -201,12 +201,12 @@ From Haeundae beach looking out to sea: a colossal wave as tall as skyscrapers r
 
 **1) 키프레임 만들기** (AI Image)
 ```
-Medium-wide shot from behind a row of excited Korean people standing on Haeundae beach facing the sea, all seen from behind: a middle-aged man holding a big shopping bag wide open, a grandmother in a sun visor raising a red plastic basin over her head, a young couple holding open shopping bags, a surfer running toward the water with his board. In front of them the giant wave of green and violet ribbon gift boxes curls over. Sunny day. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
+Medium-wide shot from behind a row of excited Korean people standing on Haeundae beach facing the sea, all seen from behind: a middle-aged man holding a big shopping bag wide open, a grandmother in a sun visor raising a red plastic basin over her head, a young couple holding open shopping bags, a surfer running toward the water with his board. In front of them the giant translucent turquoise wave curls over, with flat-screen TVs, laptops, smartphones, headphones, a refrigerator, a washing machine, sneakers, game consoles, robot vacuums and handbags visible inside the clear water, all unbranded with no logos. Sunny day. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
 ```
 
 **2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
 ```
-0–2s: the people brace excitedly, holding their bags and basin wide open; the grandmother pulls her visor down. 2–4s: the wave of gift boxes softly crashes over them and boxes tumble gently everywhere, piling up. 4–6s: they pop up out of the pile laughing and cheering, holding boxes high in the air; nobody is hurt. Playful and joyful. Sound: a cheering crowd, soft thuds of boxes. No text.
+0–2s: the people brace excitedly, holding their bags and basin wide open; the grandmother pulls her visor down. 2–4s: the giant wave gently breaks into a shallow, foamy surge that only reaches their ankles, softly setting the products down on the sand — TVs, laptops, phones, headphones, sneakers — as if delivering them. 4–6s: the people laugh and cheer, picking up the products and holding them high in the air; nobody is hurt, nothing is destroyed. Playful and joyful. No logos. Sound: a cheering crowd, a gentle wash of surf. No text.
 ```
 
 ---
@@ -221,12 +221,12 @@ Medium-wide shot from behind a row of excited Korean people standing on Haeundae
 
 **1) 키프레임 만들기** (AI Image — **택이 참고 이미지 2장 첨부**)
 ```
-Calm sparkling sea off Haeundae beach in golden afternoon light. The colossal green character from the attached images floats in the water like a giant inflatable toy: its round glossy green head with the small horn and its purple waist pouch with its own cartoon eyes are above the water. Gift boxes with green and violet ribbons float around it; the Busan skyline is far in the background, softly hazy. Photorealistic VFX creature composited into a real seascape. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
+Calm sparkling sea off Haeundae beach in golden afternoon light. The colossal green character from the attached images floats in the water like a giant inflatable toy: its round glossy green head with the small horn and its purple waist pouch with its own cartoon eyes are above the water. Unbranded products — a TV, a laptop, headphones, sneakers — float around it on the water; the Busan skyline is far in the background, softly hazy. Photorealistic VFX creature composited into a real seascape. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
 ```
 
 **2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
 ```
-0–2s: the giant character bobs gently in the waves, water dripping off its glossy head, gift boxes floating around it. 2–3.5s: it slowly turns to look straight at the camera. 3.5–5s: it gives a playful wink and the eyes on its purple pouch blink too. Cute and friendly. Sound: gentle waves and a cute pop. No text.
+0–2s: the giant character bobs gently in the waves, water dripping off its glossy head, products floating around it. 2–3.5s: it slowly turns to look straight at the camera. 3.5–5s: it gives a playful wink and the eyes on its purple pouch blink too. Cute and friendly. Sound: gentle waves and a cute pop. No text.
 ```
 
 ---
@@ -255,7 +255,9 @@ Calm sparkling sea off Haeundae beach in golden afternoon light. The colossal gr
 | 화면에 깨진 글자·간판이 생김 | 키프레임부터 다시. 구도를 더 위에서 내려다보거나 하늘 쪽으로 |
 | 택이가 안 닮음 | 참고 이미지 2장을 꼭 첨부. 그래도 안 되면 Smart Edit로 눈·뿔·파우치만 수정 |
 | 첫·끝 프레임이 이상하게 이어짐 | 끝 프레임의 사람·건물 위치가 첫 프레임과 많이 다른 것. 끝 프레임을 다시 만들기 |
-| 선물 파도가 무섭게(재난처럼) 나옴 | 프롬프트에 `cheerful, whimsical, bright, colorful, toy-like, not a disaster` 추가. 사람들이 웃는 장면이 꼭 이어지게 |
+| 파도가 무섭게(재난처럼) 나옴 | 프롬프트에 `cheerful, whimsical, bright, sunny, not a disaster, no destruction` 추가. 사람들이 웃는 장면이 꼭 이어지게 |
+| 상품에 **실제 브랜드 로고**(사과, 삼성 등)가 생김 | 상표권 문제가 될 수 있어요. 다시 생성하거나 Smart Edit로 로고만 지우기. 프롬프트의 `unbranded, no logos` 유지 |
+| 물속 상품이 안 보이고 그냥 파도만 나옴 | 키프레임부터 다시. `backlit, crystal clear translucent water, products clearly visible inside like objects in glass` 강조 |
 | 크레딧 부족 | 단순한 컷(컷 2·4)은 480p로, 또는 Standard 업그레이드 |
 | 결과에 워터마크가 있음 | 유료 플랜인지, 다운로드 옵션에서 워터마크 없는 버전을 골랐는지 확인 |
 

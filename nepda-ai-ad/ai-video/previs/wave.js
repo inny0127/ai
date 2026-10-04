@@ -134,6 +134,25 @@ SHOTS.push({ name: 'w1_meteor', dur: 3.2, build() {
   } };
 } });
 
+// 컷 2a: 정면 반응샷 — 놀라서 하늘을 가리키는 사람들의 얼굴 (뭔지는 아직 안 보여줌)
+SHOTS.push({ name: 'w2a_faces', dur: 3.4, build() {
+  const s = seaWorld({ shore: 0 }); skyline(s, -120, 120, 70, 50, 130);
+  const glow = new THREE.PointLight(0x7dff86, 0, 60, 1.5); glow.position.set(0, 18, -4); s.add(glow);
+  const ppl = []; const looks = [['#e8e2d6', '#3b4a63', 1.0], ['#c83c3c', '#2b2b33', 0.95], ['#3a7bd5', '#d8d0c0', 1.02], ['#f2c230', '#2d3b55', 0.9], ['#ffffff', '#5a5560', 1.0], ['#d36', '#333', 0.75]];
+  looks.forEach(([sh, pa, sc], i) => { const p = person({ shirt: sh, pants: pa, scale: sc }); p.root.position.set(-2.4 + i * 0.95, 0, 8 + (i % 2) * 1.0 + (i === 5 ? -0.6 : 0)); p.root.rotation.y = Math.PI; s.add(p.root); ppl.push(p); });
+  const cam = new THREE.PerspectiveCamera(48, W / H, 0.1, 3000);
+  return { s, cam, update(t) {
+    s.userData.seaTick(t); glow.intensity = 60 * ramp(t, 0.5, 3.4);
+    ppl.forEach((p, i) => {
+      const point = { rx: -2.6, sz: 0.2, ex: -0.1 }, mouth = { rx: -1.4, sz: -0.4, ex: -2.3 };
+      const tn = 0.2 + i * 0.25, k = [[0, REST], [tn, REST], [tn + 0.4, i % 3 === 1 ? mouth : point], [3.4, i % 3 === 1 ? mouth : point]];
+      p.pose(i % 2 ? REST : track(k, t), i % 2 ? track(k, t) : REST, { hx: -0.5 * ramp(t, tn - 0.2, tn + 0.3), lift: 0 });
+      p.root.position.z = 8 + (i % 2) * 1.0 + (i === 5 ? -0.6 : 0) + ramp(t, 2.2, 3.4) * 0.6;
+    });
+    cam.position.set(0, 1.45, 4.6 + 0.6 * (t / 3.4)); cam.lookAt(0, 1.75, 12); shake(cam, t, 0.5 + ramp(t, 2.0, 3.4));
+  } };
+} });
+
 // 컷 2: 해운대 — 하늘의 점이 점점 커지고 "저게 뭐야?" → 사람들 바로 앞바다에 거대하게 꽂힘 → 물폭발 속 택이 실루엣 (7초)
 SHOTS.push({ name: 'w2_impact', dur: 7.6, build() {
   const s = seaWorld({ shore: 0 }); skyline(s, 40, 260, 40, 50, 130);
@@ -192,58 +211,62 @@ SHOTS.push({ name: 'w3_wave', dur: 4.6, build() {
   } };
 } });
 
-// 컷 4: 장바구니·대야로 마중 → 파도가 발목 높이로 밀려와 상품을 내려놓음 → 환호 (5초)
-SHOTS.push({ name: 'w4_welcome', dur: 5.0, build() {
-  const s = seaWorld({ shore: 0, fogNear: 60, fogFar: 900 });
-  const cast = [
-    { shirt: '#2d3b55', pants: '#4a4a4a', prop: 'bag', x: -2.6 }, { shirt: '#6b4f9e', pants: '#5a5560', prop: 'basin', perm: true, x: -0.9, scale: 0.88 },
-    { shirt: '#f2c230', pants: '#2b2b33', prop: 'bag2', x: 0.8 }, { shirt: '#e8e2d6', pants: '#3b4a63', prop: 'bag2', x: 2.1 }, { shirt: '#1d1d1d', pants: '#1d1d1d', prop: 'board', x: 3.9 }];
-  const ppl = cast.map(c => { const p = person({ shirt: c.shirt, pants: c.pants, perm: c.perm, scale: c.scale || 1, sleeve: 'long' }); p.root.position.set(c.x, 0, 3); p.root.rotation.y = Math.PI; s.add(p.root);
-    if (c.prop === 'basin') { const b = cyl(0.32, 0.22, 0.16, mat('#d9302c', { roughness: 0.4 })); b.position.set(0, 2.05, 0); p.body.add(b); p.prop = b; }
-    if (c.prop === 'bag' || c.prop === 'bag2') { const b = box(0.5, 0.45, 0.22, mat(c.prop === 'bag' ? '#e9e2d0' : G, { roughness: 0.8 })); b.position.set(0, 1.05, -0.45); p.body.add(b); p.prop = b; }
-    if (c.prop === 'board') { const b = box(0.5, 0.06, 2.0, mat('#f5f5f0')); b.position.set(0.35, 1.0, 0); b.rotation.z = 1.3; p.body.add(b); p.prop = b; }
-    return p; });
-  const WV = bigWave(260, 26); s.add(WV);
-  const foamTex = canvasTex(256, 64, (g, w, h) => { g.fillStyle = 'rgba(255,255,255,0.9)'; g.fillRect(0, 0, w, h); g.fillStyle = 'rgba(160,220,230,0.5)'; for (let i = 0; i < 400; i++) { g.beginPath(); g.arc(rnd() * w, rnd() * h, 2 + rnd() * 6, 0, 7); g.fill(); } });
-  const foam = mesh(new THREE.PlaneGeometry(260, 30), new THREE.MeshStandardMaterial({ map: foamTex, transparent: true, opacity: 0.95, roughness: 0.6 })); foam.rotation.x = -Math.PI / 2; s.add(foam);
-  const landed = []; for (let i = 0; i < 26; i++) { const p = product(PROD[i % PROD.length]); const x = -6 + rnd() * 12, z = -6 + rnd() * 7.5; p.userData.dst = new THREE.Vector3(x, 0.25, z); p.userData.src = new THREE.Vector3(x * 1.4, 12 + rnd() * 8, -18 - rnd() * 6); p.userData.d = rnd() * 0.5; p.userData.r = [rnd() * 6, rnd() * 6]; s.add(p); landed.push(p); }
-  const cam = new THREE.PerspectiveCamera(58, W / H, 0.1, 3000);
-  const TB = 2.1; // 파도가 부서지는 시각
+// 컷 3b: 옆에서 본 쓰나미 — 말려 올라가는 파도의 옆모습, 해변의 사람들은 점처럼 작게
+SHOTS.push({ name: 'w3b_side', dur: 2.6, build() {
+  const s = seaWorld({ shore: 0, fogNear: 200, fogFar: 2200 }); skyline(s, -100, 400, 60, 50, 130);
+  const ppl = []; for (let i = 0; i < 14; i++) { const p = person({ shirt: ['#e33', '#36c', '#fff', '#fc3', '#3a3', '#222'][i % 6] }); p.root.position.set(10 + i * 4, 0, 4 + (i % 3) * 2); p.root.rotation.y = Math.PI; s.add(p.root); ppl.push(p); }
+  const WV = bigWave(1400, 150); s.add(WV);
+  const cam = new THREE.PerspectiveCamera(62, W / H, 0.5, 5000);
   return { s, cam, update(t) {
     s.userData.seaTick(t); WV.userData.tick(t);
-    WV.visible = t < TB + 0.5; WV.position.set(0, 0, lerp(-70, -24, ramp(t, 0, TB))); WV.scale.set(1, 1 - 0.85 * ramp(t, TB - 0.2, TB + 0.5), 1);
-    const f = ramp(t, TB - 0.1, TB + 1.3); foam.visible = t > TB - 0.1; foam.position.set(0, 0.12 + 0.25 * (1 - f), lerp(-24, -9, f) - 15 + 15 * f * 0.4); foam.material.opacity = 0.95 * (1 - ramp(t, TB + 1.6, 4.6));
-    landed.forEach(p => { const k = clamp((t - TB - p.userData.d) / 1.0); p.visible = t > TB - 0.3 + p.userData.d * 0.5; p.position.lerpVectors(p.userData.src, p.userData.dst, smooth(k)); p.position.y += Math.sin(k * Math.PI) * 2.5; p.rotation.set(p.userData.r[0] * (1 - k), p.userData.r[1] * (1 - k) + 0.3, 0); });
-    ppl.forEach((p, i) => {
-      const brace = i === 1 ? { rx: -3.0, sz: 0.35, ex: -0.3 } : { rx: -1.2, sz: 0.55, ex: -0.4 };
-      const cheer = { rx: -2.9, sz: 0.45 + (i % 2) * 0.2, ex: -0.2 };
-      const k = [[0, REST], [0.3, brace], [3.3, brace], [3.7, cheer], [5.4, cheer]];
-      const jump = t > 3.6 ? Math.abs(Math.sin((t - 3.6) * 7 + i)) * 0.18 : 0;
-      p.pose(track(k, t), track(k, t), { lift: jump, hx: -0.15 });
-      if (i === 4) p.root.position.z = 3 - ramp(t, 0.3, 2.0) * 3.5;
-    });
-    cam.position.set(0.4, 1.45, 8.5); cam.lookAt(0, 3.4, -30); shake(cam, t, 0.5 + (t > TB && t < TB + 1 ? 1.5 : 0));
+    WV.position.set(0, 0, lerp(-150, -95, t / 2.6));
+    ppl.forEach(p => p.pose(REST, { rx: -2.6, sz: 0.3 }, { hx: -0.4 }));
+    cam.position.set(-30, 3, 30); cam.lookAt(60, 45, -70); shake(cam, t, 0.8);
+  } };
+} });
+
+// 컷 4: 파도가 부서지며 제품들이 하늘에서 쏟아져 사람들 바로 앞 모래에 꽂힘 (스펙터클) → 환호
+SHOTS.push({ name: 'w4_welcome', dur: 4.2, build() {
+  const s = seaWorld({ shore: 0, fogNear: 60, fogFar: 900 });
+  const cast = [['#2d3b55', '#4a4a4a'], ['#6b4f9e', '#5a5560'], ['#f2c230', '#2b2b33'], ['#e8e2d6', '#3b4a63'], ['#c83c3c', '#222']];
+  const ppl = cast.map(([sh, pa], i) => { const p = person({ shirt: sh, pants: pa, perm: i === 1, scale: i === 1 ? 0.88 : 1 }); p.root.position.set(-3.2 + i * 1.6, 0, 5); p.root.rotation.y = Math.PI; s.add(p.root); if (i === 1) { const b = cyl(0.32, 0.22, 0.16, mat('#d9302c', { roughness: 0.4 })); b.position.set(0, 2.05, 0); p.body.add(b); } return p; });
+  const items = []; for (let i = 0; i < 34; i++) { const p = product(PROD[i % PROD.length]); p.scale.multiplyScalar(2.6); const x = -7 + rnd() * 14, z = 3 - rnd() * 9;
+    p.userData = { dst: new THREE.Vector3(x, 0.15, z), src: new THREE.Vector3(x + (rnd() - 0.5) * 10, 40 + rnd() * 40, z - 30 - rnd() * 20), t0: 0.2 + rnd() * 1.6, tilt: [(rnd() - 0.5) * 1.2, rnd() * 6, (rnd() - 0.5) * 1.2], spin: [rnd() * 8, rnd() * 8] };
+    s.add(p); items.push(p); }
+  const puffs = items.map(() => { const sp = sprite(WHITE, 1, 0xe8d6ad, 0); sp.material.blending = THREE.NormalBlending; s.add(sp); return sp; });
+  const foam = mesh(new THREE.PlaneGeometry(300, 30), new THREE.MeshStandardMaterial({ color: '#f4fbfb', transparent: true, opacity: 0.9 })); foam.rotation.x = -Math.PI / 2; s.add(foam);
+  const cam = new THREE.PerspectiveCamera(60, W / H, 0.1, 3000);
+  return { s, cam, update(t) {
+    s.userData.seaTick(t);
+    foam.position.set(0, 0.12, lerp(-40, -16, ramp(t, 0, 1.2))); foam.material.opacity = 0.9 * (1 - ramp(t, 1.4, 3));
+    items.forEach((p, i) => { const d = p.userData, k = clamp((t - d.t0) / 0.9); p.visible = t > d.t0 - 0.05;
+      p.position.lerpVectors(d.src, d.dst, k * k); p.rotation.set(d.tilt[0] + d.spin[0] * (1 - k), d.tilt[1] + d.spin[1] * (1 - k), d.tilt[2]);
+      const pt = t - d.t0 - 0.9, pf = puffs[i]; pf.position.copy(d.dst).setY(0.8); pf.material.opacity = pt > 0 ? Math.max(0, 0.75 - pt * 0.9) : 0; pf.scale.setScalar(pt > 0 ? 1.5 + pt * 6 : 0.01); });
+    ppl.forEach((p, i) => { const flinch = { rx: -2.0, sz: -0.3, ex: -1.9 }, cheer = { rx: -2.9, sz: 0.5, ex: -0.2 };
+      const k = [[0, REST], [0.3, flinch], [2.4, flinch], [2.8, cheer], [4.2, cheer]];
+      p.pose(track(k, t), track(k, t), { lift: t > 2.8 ? Math.abs(Math.sin((t - 2.8) * 7 + i)) * 0.2 : 0, hx: -0.2 }); });
+    cam.position.set(0.3, 1.2, 10); cam.lookAt(0, 4, -20); shake(cam, t, 0.5 + 2.5 * ramp(t, 0.9, 1.3) * (1 - ramp(t, 1.8, 2.6)));
   } };
 } });
 
 // 컷 5: 바다에 둥둥 뜬 택이 → 윙크 (4.5초)
 SHOTS.push({ name: 'w5_taki', dur: 4.6, build() {
   const s = seaWorld({ shore: 0, top: '#78aee6', bot: '#f6e7cf' }); skyline(s, -260, 260, -900, 40, 120);
-  const T = taki(); T.scale.setScalar(42); s.add(T);
+  const T = taki(); T.scale.setScalar(85); s.add(T);
   const ppl = []; for (let i = 0; i < 9; i++) { const p = person({ shirt: ['#e33', '#36c', '#fff', '#fc3', '#3a3', '#222', '#d36', '#888', '#6b4f9e'][i] }); p.root.position.set(-7 + i * 1.75, 0, 4 + (i % 2) * 1.2); p.root.rotation.y = Math.PI; s.add(p.root); ppl.push(p); }
   const fl = []; for (let i = 0; i < 16; i++) { const p = product(PROD[i % PROD.length]); p.position.set(-9 + rnd() * 18, 0.25, -1 - rnd() * 4); p.rotation.y = rnd() * 6; s.add(p); fl.push(p); }
-  const cam = new THREE.PerspectiveCamera(60, W / H, 0.1, 4000);
+  const cam = new THREE.PerspectiveCamera(72, W / H, 0.1, 4000);
   return { s, cam, update(t) {
     s.userData.seaTick(t);
-    T.position.set(0, 20 + Math.sin(t * 1.3) * 1.2, -150); T.rotation.set(0.12, lerp(0.4, 0, ramp(t, 0.6, 1.8)), Math.sin(t * 1.1) * 0.04);
+    T.position.set(0, 62 + Math.sin(t * 1.3) * 1.5, -220); T.rotation.set(0.12, lerp(0.4, 0, ramp(t, 0.6, 1.8)), Math.sin(t * 1.1) * 0.04);
     const wink = t > 2.3 && t < 2.85 ? Math.sin((t - 2.3) / 0.55 * Math.PI) : 0; T.eyes[0].scale.y = 1 - 0.92 * wink;
     ppl.forEach((p, i) => p.pose(REST, t > 2.6 && i % 2 ? { rx: -2.8, sz: 0.4 } : REST, { hx: -0.55, lift: t > 2.6 ? Math.abs(Math.sin((t - 2.6) * 6 + i)) * 0.12 : 0 }));
-    cam.position.set(0, 1.3, 13); cam.lookAt(0, lerp(26, 30, t / 4.6), -150); shake(cam, t, 0.3);
+    cam.position.set(0, 1.0, 13); cam.lookAt(0, lerp(55, 62, t / 4.6), -150); shake(cam, t, 0.3);
   } };
 } });
 
 // 컷 6: 상품으로 뒤덮인 해운대 항공샷 (+ KV 엔드카드가 위에 얹힘) (7.5초)
-SHOTS.push({ name: 'w6_aerial', dur: 7.8, build() {
+SHOTS.push({ name: 'w6_aerial', dur: 9.4, build() {
   const s = seaWorld({ shore: 0, fogNear: 300, fogFar: 2600 }); skyline(s, -320, 320, 160, 60, 160);
   const N = 1400, cols = ['#1a1b1e', '#f1f1ef', '#c9ccd1', G, P, '#d8342c', '#8a5a3b', '#2b4f7a'];
   const geo = new THREE.BoxGeometry(1, 1, 1);
@@ -257,7 +280,7 @@ SHOTS.push({ name: 'w6_aerial', dur: 7.8, build() {
   return { s, cam, update(t) {
     s.userData.seaTick(t);
     T.position.set(-90, 8 + Math.sin(t * 1.4) * 2, -30); T.rotation.y = Math.PI + 0.6 + Math.sin(t * 0.7) * 0.1;
-    const k = smooth(t / 7.8);
+    const k = smooth(t / 9.4);
     cam.position.set(lerp(-20, 10, k), lerp(85, 130, k), lerp(-190, -250, k)); cam.lookAt(0, 0, lerp(25, 35, k)); shake(cam, t, 0.2);
   } };
 } });

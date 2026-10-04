@@ -134,57 +134,66 @@ SHOTS.push({ name: 'w1_meteor', dur: 3.2, build() {
   } };
 } });
 
-// 컷 2: 해운대 — 하늘을 가리킴 → 수평선에 풍덩 → 물기둥 (4.5초)
-SHOTS.push({ name: 'w2_impact', dur: 4.8, build() {
+// 컷 2: 해운대 — 하늘의 점이 점점 커지고 "저게 뭐야?" → 사람들 바로 앞바다에 거대하게 꽂힘 → 물폭발 속 택이 실루엣 (7초)
+SHOTS.push({ name: 'w2_impact', dur: 7.6, build() {
   const s = seaWorld({ shore: 0 }); skyline(s, 40, 260, 40, 50, 130);
   const ppl = [];
-  const looks = [['#e8e2d6', '#3b4a63'], ['#c83c3c', '#2b2b33'], ['#3a7bd5', '#d8d0c0'], ['#f2c230', '#2d3b55'], ['#ffffff', '#5a5560'], ['#2d6a4f', '#222']];
-  looks.forEach(([sh, pa], i) => { const p = person({ shirt: sh, pants: pa, scale: 0.95 + (i % 3) * 0.05 }); p.root.position.set(-5 + i * 2 + (i % 2) * 0.4, 0, 6 - (i % 3) * 1.6); p.root.rotation.y = Math.PI; s.add(p.root); ppl.push(p); });
-  const F = fireball(4); s.add(F); F.userData.trail.forEach(t => s.add(t));
-  const IMP = new THREE.Vector3(-30, 0, -520);
+  const looks = [['#e8e2d6', '#3b4a63'], ['#c83c3c', '#2b2b33'], ['#3a7bd5', '#d8d0c0'], ['#f2c230', '#2d3b55'], ['#ffffff', '#5a5560'], ['#2d6a4f', '#222'], ['#d36', '#333'], ['#888', '#223']];
+  looks.forEach(([sh, pa], i) => { const p = person({ shirt: sh, pants: pa, scale: 0.92 + (i % 3) * 0.06 }); p.root.position.set(-6.5 + i * 1.9 + (i % 2) * 0.5, 0, 5.5 - (i % 3) * 1.8); p.root.rotation.y = Math.PI; s.add(p.root); ppl.push(p); });
+  const F = fireball(1); s.add(F); F.userData.trail.forEach(t => s.add(t));
+  const TI = 6.3, IMP = new THREE.Vector3(0, 0, -150), SRC = new THREE.Vector3(-120, 900, -2600);
+  const fpos = t => { const k = Math.pow(clamp(t / TI), 2.2); return new THREE.Vector3().lerpVectors(SRC, IMP, k); };
   const colG = new THREE.Group(); colG.position.copy(IMP); s.add(colG);
-  const col = []; for (let i = 0; i < 260; i++) { const sp = sprite(WHITE, 30, rnd() < 0.3 ? 0x9dffb0 : 0xffffff, 0.6); sp.userData.r = rnd(); sp.userData.a = rnd() * 6.28; sp.userData.h = rnd(); colG.add(sp); col.push(sp); }
-  const flash = sprite(GLOW, 10, 0xcfffcf, 0); flash.position.copy(IMP).add(new THREE.Vector3(0, 20, 0)); s.add(flash);
+  const col = []; for (let i = 0; i < 420; i++) { const sp = sprite(WHITE, 40, rnd() < 0.25 ? 0xa8ffb8 : 0xffffff, 0.6); sp.userData.r = rnd(); sp.userData.a = rnd() * 6.28; sp.userData.h = Math.pow(rnd(), 0.7); colG.add(sp); col.push(sp); }
+  const flash = sprite(GLOW, 10, 0xd8ffd8, 0); flash.position.copy(IMP).add(new THREE.Vector3(0, 30, 0)); s.add(flash);
   const ring = new THREE.Mesh(new THREE.RingGeometry(0.9, 1, 96), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, side: THREE.DoubleSide })); ring.rotation.x = -Math.PI / 2; ring.position.copy(IMP).setY(0.6); s.add(ring);
-  const cam = new THREE.PerspectiveCamera(58, W / H, 0.1, 4000);
-  const TI = 2.4; // 풍덩 시각
+  const T = taki(); T.scale.setScalar(70); s.add(T); T.traverse(o => { if (o.material) { o.material = o.material.clone(); o.material.transparent = true; } });
+  const rain = []; for (let i = 0; i < 120; i++) { const sp = sprite(WHITE, 0.25, 0xffffff, 0.7); sp.userData.p = [(rnd() - 0.5) * 30, 20 + rnd() * 30, -rnd() * 30 + 8, rnd()]; s.add(sp); rain.push(sp); }
+  const cam = new THREE.PerspectiveCamera(62, W / H, 0.1, 6000);
   return { s, cam, update(t) {
     s.userData.seaTick(t);
-    const k = clamp(t / TI);
-    const pos = new THREE.Vector3(lerp(-260, IMP.x, k), lerp(420, 0, Math.pow(k, 1.6)), lerp(-900, IMP.z, k));
-    F.visible = t < TI; F.position.copy(pos);
-    F.userData.trail.forEach((sp, i) => { const kk = clamp((t - i * 0.03) / TI); sp.visible = t < TI + 0.1; sp.position.set(lerp(-260, IMP.x, kk), lerp(420, 0, Math.pow(kk, 1.6)), lerp(-900, IMP.z, kk)); sp.scale.setScalar(26 * (1 - i / 44)); sp.material.opacity = 0.5 - i / 90; });
-    const c = clamp((t - TI) / 0.9), fall = clamp((t - TI - 1.0) / 1.6);
-    col.forEach(sp => { const d = sp.userData; const hh = d.h * 260 * smooth(c) * (1 - 0.35 * fall); const rr = d.r * (12 + 50 * d.h * c + 40 * fall); sp.position.set(Math.cos(d.a) * rr, hh, Math.sin(d.a) * rr); sp.material.opacity = t < TI ? 0 : 0.55 * (1 - fall * 0.5); sp.scale.setScalar(26 + d.h * 30); });
-    flash.material.opacity = t > TI ? Math.max(0, 1 - (t - TI) / 0.6) : 0; flash.scale.setScalar(120 + (t - TI) * 200);
-    const rr = Math.max(0.01, (t - TI) * 260); ring.scale.setScalar(rr); ring.material.opacity = t > TI ? Math.max(0, 0.8 - (t - TI) / 2.4) : 0;
+    const pos = fpos(t), k = clamp(t / TI);
+    F.visible = t < TI; F.position.copy(pos); F.scale.setScalar(6 + 26 * Math.pow(k, 3));
+    F.lookAt(cam.position);
+    F.userData.trail.forEach((sp, i) => { const q = fpos(Math.max(0, t - i * 0.04)); sp.visible = t < TI + 0.05; sp.position.copy(q); sp.scale.setScalar((30 + 140 * Math.pow(k, 3)) * (1 - i / 44)); sp.material.opacity = 0.5 - i / 90; });
+    const c = clamp((t - TI) / 0.7), fall = clamp((t - TI - 0.8) / 1.5);
+    col.forEach(sp => { const d = sp.userData; const hh = d.h * 380 * smooth(c) * (1 - 0.25 * fall); const rr = d.r * (25 + 90 * d.h * c + 60 * fall); sp.position.set(Math.cos(d.a) * rr, hh, Math.sin(d.a) * rr * 0.6); sp.material.opacity = t < TI ? 0 : 0.6 * (1 - fall * 0.4); sp.scale.setScalar(50 + d.h * 60); });
+    flash.material.opacity = t > TI ? Math.max(0, 1 - (t - TI) / 0.5) : 0; flash.scale.setScalar(300 + (t - TI) * 500);
+    ring.scale.setScalar(Math.max(0.01, (t - TI) * 220)); ring.material.opacity = t > TI ? Math.max(0, 0.9 - (t - TI) / 1.6) : 0;
+    // 물폭발 속에서 거대한 택이 실루엣이 솟아오름
+    const r = ramp(t, TI + 0.5, 7.6); T.visible = t > TI + 0.4; T.position.set(0, lerp(-40, 45, r), -190); T.rotation.y = Math.sin(t) * 0.05;
+    T.traverse(o => { if (o.material) o.material.opacity = 0.25 + 0.6 * r; });
+    rain.forEach(sp => { const d = sp.userData.p; const tt = t - TI - 0.6; sp.visible = tt > 0; sp.position.set(d[0], d[1] - ((tt * 12 + d[3] * 20) % 40), d[2]); });
     ppl.forEach((p, i) => {
       const point = { rx: -2.5, sz: 0.25 + (i % 2) * 0.1, ex: -0.1 }, shield = { rx: -2.0, sz: -0.3, ex: -1.9 };
-      const pointer = i === 1 || i === 3 || i === 4;
-      const R = track([[0, REST], [0.4 + i * 0.08, REST], [0.9 + i * 0.08, pointer ? point : REST], [TI + 0.05, pointer ? point : REST], [TI + 0.35, shield], [4.8, shield]], t);
-      p.pose(REST, R, { hx: -0.45 * ramp(t, 0.2 + i * 0.1, 0.8 + i * 0.1), hy: -0.15, lift: t > TI && t < TI + 0.25 ? -0.03 : 0 });
+      const tNotice = 0.4 + (i % 4) * 0.45, pointer = i % 2 === 1 || i === 4;
+      const R = track([[0, REST], [tNotice, REST], [tNotice + 0.5, pointer ? point : REST], [TI - 1.3, pointer ? point : REST], [TI - 0.6, shield], [7.6, shield]], t);
+      const back = ramp(t, TI - 1.5, TI - 0.3) * 1.2 + ramp(t, TI, TI + 0.4) * 0.8;
+      p.pose(REST, R, { hx: -0.25 - 0.35 * ramp(t, tNotice - 0.3, tNotice + 0.4), hy: -0.1, lift: t > TI && t < TI + 0.25 ? -0.04 : 0 });
+      p.root.position.z = 5.5 - (i % 3) * 1.8 + back;
     });
-    cam.position.set(0, 1.55, 13); cam.lookAt(-6, 26, -200); shake(cam, t, 0.6 + (t > TI ? 4 * Math.exp(-(t - TI) * 3) : 0));
+    cam.position.set(0, 1.4, 13); cam.lookAt(0, lerp(40, 28, ramp(t, TI - 2, TI)), -200);
+    shake(cam, t, 0.5 + 1.2 * ramp(t, TI - 1.5, TI) + (t > TI ? 7 * Math.exp(-(t - TI) * 2.5) : 0));
   } };
 } });
 
 // 컷 3: 수평선의 거대한 물 파도, 투명한 물속에 상품들 (5초)
-SHOTS.push({ name: 'w3_wave', dur: 5.4, build() {
+SHOTS.push({ name: 'w3_wave', dur: 4.6, build() {
   const s = seaWorld({ shore: 0 }); skyline(s, 40, 260, 40, 50, 130);
   const ppl = []; for (let i = 0; i < 8; i++) { const p = person({ shirt: ['#e8e2d6', '#c83c3c', '#3a7bd5', '#f2c230', '#fff', '#2d6a4f', '#444', '#d36'][i] }); p.root.position.set(-9 + i * 2.4, 0, 2 - (i % 2) * 2); p.root.rotation.y = Math.PI; s.add(p.root); ppl.push(p); }
   const WV = bigWave(1100, 170); s.add(WV);
   const cam = new THREE.PerspectiveCamera(60, W / H, 0.1, 4000);
   return { s, cam, update(t) {
     s.userData.seaTick(t); WV.userData.tick(t);
-    const k = smooth(t / 5.4);
-    WV.position.set(0, -30 + 30 * ramp(t, 0, 1.5), lerp(-560, -150, k)); WV.scale.set(1, lerp(0.6, 1.1, k), 1);
+    const k = smooth(t / 4.6);
+    WV.position.set(0, -30 + 30 * ramp(t, 0, 1.0), lerp(-260, -95, k)); WV.scale.set(1, lerp(0.75, 1.15, k), 1);
     ppl.forEach((p, i) => p.pose(REST, i % 3 === 0 ? { rx: -2.4, sz: 0.3 } : REST, { hx: -0.25, lift: 0 }));
     cam.position.set(0, lerp(1.7, 1.9, k), lerp(14, 4, k)); cam.lookAt(0, lerp(40, 80, k), -200); shake(cam, t, 0.5);
   } };
 } });
 
 // 컷 4: 장바구니·대야로 마중 → 파도가 발목 높이로 밀려와 상품을 내려놓음 → 환호 (5초)
-SHOTS.push({ name: 'w4_welcome', dur: 5.4, build() {
+SHOTS.push({ name: 'w4_welcome', dur: 5.0, build() {
   const s = seaWorld({ shore: 0, fogNear: 60, fogFar: 900 });
   const cast = [
     { shirt: '#2d3b55', pants: '#4a4a4a', prop: 'bag', x: -2.6 }, { shirt: '#6b4f9e', pants: '#5a5560', prop: 'basin', perm: true, x: -0.9, scale: 0.88 },
@@ -218,17 +227,18 @@ SHOTS.push({ name: 'w4_welcome', dur: 5.4, build() {
 } });
 
 // 컷 5: 바다에 둥둥 뜬 택이 → 윙크 (4.5초)
-SHOTS.push({ name: 'w5_taki', dur: 4.8, build() {
-  const s = seaWorld({ beach: false, top: '#78aee6', bot: '#f6e7cf' }); skyline(s, -260, 260, -900, 40, 120);
-  const T = taki(); T.scale.setScalar(14); s.add(T);
-  const fl = []; for (let i = 0; i < 18; i++) { const p = product(PROD[i % PROD.length]); p.scale.multiplyScalar(4); const a = (i / 18) * 6.28, r = 18 + rnd() * 14; p.userData.b = [Math.cos(a) * r, 6 + Math.abs(Math.sin(a)) * r * 0.5, rnd() * 6]; s.add(p); fl.push(p); }
-  const cam = new THREE.PerspectiveCamera(50, W / H, 0.1, 4000);
+SHOTS.push({ name: 'w5_taki', dur: 4.6, build() {
+  const s = seaWorld({ shore: 0, top: '#78aee6', bot: '#f6e7cf' }); skyline(s, -260, 260, -900, 40, 120);
+  const T = taki(); T.scale.setScalar(42); s.add(T);
+  const ppl = []; for (let i = 0; i < 9; i++) { const p = person({ shirt: ['#e33', '#36c', '#fff', '#fc3', '#3a3', '#222', '#d36', '#888', '#6b4f9e'][i] }); p.root.position.set(-7 + i * 1.75, 0, 4 + (i % 2) * 1.2); p.root.rotation.y = Math.PI; s.add(p.root); ppl.push(p); }
+  const fl = []; for (let i = 0; i < 16; i++) { const p = product(PROD[i % PROD.length]); p.position.set(-9 + rnd() * 18, 0.25, -1 - rnd() * 4); p.rotation.y = rnd() * 6; s.add(p); fl.push(p); }
+  const cam = new THREE.PerspectiveCamera(60, W / H, 0.1, 4000);
   return { s, cam, update(t) {
     s.userData.seaTick(t);
-    T.position.set(0, 6.5 + Math.sin(t * 1.6) * 0.8, -70); T.rotation.set(0.05, lerp(0.5, 0, ramp(t, 0.8, 2.0)), Math.sin(t * 1.2) * 0.05);
-    const wink = t > 2.4 && t < 2.95 ? Math.sin((t - 2.4) / 0.55 * Math.PI) : 0; T.eyes[0].scale.y = 1 - 0.92 * wink;
-    fl.forEach((p, i) => { const b = p.userData.b; p.position.set(b[0], 0.4 + Math.sin(t * 1.8 + i) * 0.4, -70 + b[1]); p.rotation.set(0.2 + Math.sin(t + i) * 0.15, b[2] + t * 0.1, 0); });
-    cam.position.set(0, lerp(6, 5, t / 4.8), lerp(-8, -14, t / 4.8)); cam.lookAt(0, 9, -70); shake(cam, t, 0.3);
+    T.position.set(0, 20 + Math.sin(t * 1.3) * 1.2, -150); T.rotation.set(0.12, lerp(0.4, 0, ramp(t, 0.6, 1.8)), Math.sin(t * 1.1) * 0.04);
+    const wink = t > 2.3 && t < 2.85 ? Math.sin((t - 2.3) / 0.55 * Math.PI) : 0; T.eyes[0].scale.y = 1 - 0.92 * wink;
+    ppl.forEach((p, i) => p.pose(REST, t > 2.6 && i % 2 ? { rx: -2.8, sz: 0.4 } : REST, { hx: -0.55, lift: t > 2.6 ? Math.abs(Math.sin((t - 2.6) * 6 + i)) * 0.12 : 0 }));
+    cam.position.set(0, 1.3, 13); cam.lookAt(0, lerp(26, 30, t / 4.6), -150); shake(cam, t, 0.3);
   } };
 } });
 

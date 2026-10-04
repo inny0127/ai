@@ -8,12 +8,12 @@
 
 | 시간 | 장면 | 소리 (Claude가 편집에서) |
 |---|---|---|
-| 0~3초 | 우주: 초록 불덩이(택이)가 한반도 대기권을 뚫고 들어와요 | 🎵 차라투스트라 시작 + 굉음 |
-| 3~7.5초 | 해운대: 사람들이 하늘을 가리키며 **"어? 저게 뭐야?"** → 수평선에 풍덩 → 물기둥 | 🎵 "빠–바–밤!" 큰 화음 = **쿵!** |
-| 7.5~12.5초 | 수평선에 솟는 거대한 물 파도, 물속에 TV·노트북·폰·냉장고 | 🎵 차라투스트라 클라이맥스로 이어짐 |
-| 12.5~17.5초 | 장바구니·대야로 마중 → 파도가 상품을 모래 위에 내려놓음 → 환호 | 🎵 상품이 쏟아지는 순간 '쾅' |
-| 17.5~22초 | 바다에 뜬 택이가 **윙크** + 자막·내레이션 **"거대한 혜택이 밀려온다"** | 뾰옹 + 예고편 성우 |
-| 22~29.5초 | **상품으로 뒤덮인 해운대 항공샷** 위에 **KV 엔드카드**가 얹혀요 (10.26 ~ 11.8 + 검색창) | 🎵 정점의 화음과 함께 KV 등장 → 여운 |
+| 0~2.5초 | 우주: 초록 불덩이(택이)가 대기권으로 | 쉬이익 |
+| 2.5~9.5초 | 해운대: 하늘의 작은 점이 점점 커져요 → **"어? 저게 뭐야?" "뭐야 뭐야?" "어어어… 이쪽으로 온다!"** → **사람들 바로 앞바다에 거대하게 꽂혀요** → 물폭발 속 거대한 택이 실루엣 | 🎵 차라투스트라 "빠–바–" → **"밤!"(8.5초) = 착지 쿵!** |
+| 9.5~13.5초 | 착지 지점에서 바로 솟는 거대한 물 파도, 물속에 TV·노트북·냉장고 | 🎵 팀파니 → 클라이맥스로 |
+| 13.5~18초 | 장바구니·대야로 마중 → 상품이 모래에 쏟아짐 → 환호 | 🎵 '쾅' |
+| 18~22초 | 해변 바로 앞에 우뚝 선 거대한 택이가 **윙크** + 자막·내레이션 **"거대한 혜택이 밀려온다"** | 뾰옹 + 성우 |
+| 22~29.5초 | 상품으로 뒤덮인 해운대 항공샷 위에 **KV 엔드카드** | 🎵 정점의 화음 → 여운 |
 
 AI로 만드는 컷은 **6개**예요. 자막, 엔드카드, 음악, 효과음, 내레이션은 Claude가 편집에서 넣어요.
 
@@ -75,8 +75,8 @@ Dreamina에는 이번에 쓸 작업 공간이 **2개** 있어요.
 | 항목 | 내용 | 크레딧(대략) |
 |---|---|---|
 | 키프레임 이미지 | 약 10~15장 | 약 50~150 |
-| 영상 6컷 1번씩 | 4+5+6+6+5+8 = 34초 | 약 1,260 |
-| 컷 3(상품이 든 파도) 한 번 더 (제일 어려움) | 6초 | 약 220 |
+| 영상 6컷 1번씩 | 3+8+5+5+5+8 = 34초 | 약 1,260 |
+| 컷 2(착지) 또는 컷 3(파도) 한 번 더 | 5~8초 | 약 190~300 |
 | **합계** | | **약 1,500~1,600 → Basic(1,575)에 아슬아슬해요** |
 
 - 여유가 거의 없으니 키프레임은 **Seedream 4.6**(장당 약 3크레딧)으로 만들고, **키프레임을 충분히 다듬은 뒤** 영상을 뽑으세요. 키프레임이 좋으면 영상은 한 번에 나오는 경우가 많아요.
@@ -140,12 +140,12 @@ Dreamina에는 이번에 쓸 작업 공간이 **2개** 있어요.
 > 영상 프롬프트에 `0–2s:` 같은 **시간대별 동작**을 넣었어요. 길어진 컷이 늘어지지 않게 하려는 거예요.
 > **컷 1부터** 하세요. 컷 1이 나오면 Claude에게 먼저 보여 주세요.
 
-### 컷 1 — 우주: 초록 불덩이(택이)가 대기권 진입 (3초) ★ 훅
+### 컷 1 — 우주: 초록 불덩이(택이)가 대기권 진입 (2.5초) ★ 훅
 
 | 항목 | 값 |
 |---|---|
 | 영상 모드 | **이미지 → 영상** (첫 프레임 1장) |
-| 길이 | **4초** |
+| 길이 | **3초** |
 | 파일 이름 | `w1_meteor.mp4` |
 
 **1) 키프레임 만들기** (AI Image — **택이 참고 이미지 2장 첨부**)
@@ -155,57 +155,59 @@ View from low Earth orbit over the Korean Peninsula and the surrounding sea at g
 
 **2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
 ```
-0–1.5s: the glowing green fireball plunges deeper into the atmosphere, its flames and green plasma trail growing brighter and larger. 1.5–4s: it pierces through the clouds and streaks diagonally down toward the southeast coast of Korea, trailing green fire and sparks; the camera tracks it. Epic and fast. Sound: a rising roar. No text.
+0–1s: the glowing green fireball plunges deeper into the atmosphere, its flames and green plasma trail growing brighter and larger. 1–3s: it pierces through the clouds and streaks diagonally down toward the southeast coast of Korea, trailing green fire and sparks; the camera tracks it. Epic and fast. Sound: a rising roar. No text.
 ```
 
 ---
 
-### 컷 2 — 해운대: 수평선에 풍덩, 거대한 물기둥 (4.5초)
+### 컷 2 — "저게 뭐야?" → 사람들 바로 앞바다에 거대하게 착지 (7초) ★ 하이라이트
+
+| 항목 | 값 |
+|---|---|
+| 영상 모드 | **이미지 → 영상** (첫 프레임 1장) |
+| 길이 | **8초** |
+| 파일 이름 | `w2_impact.mp4` |
+
+**1) 키프레임 만들기** (AI Image)
+```
+Low wide shot from the sand of Haeundae beach in Busan on a bright afternoon, camera behind a row of beachgoers seen from behind, standing close to the waterline and looking up at the sky; a few of them point upward. High in the clear blue sky above the sea, a small glowing neon-green dot of light. Calm blue sea right in front of them, the curve of the beach and hotel towers on the right softly blurred. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
+```
+
+**2) 영상 생성** (AI Video, Seedance 2.5, 8초)
+```
+0–4s: the small green light in the sky grows bigger and brighter as it falls straight toward the beach; more and more people notice, point and step back; a woman says in Korean, "어? 저게 뭐야?", a man says, "뭐야, 뭐야?", and another man shouts, "어어어… 이쪽으로 온다!" 4–6s: it becomes a gigantic blazing green fireball filling the sky and slams into the sea only about a hundred meters in front of the crowd. 6–8s: a colossal explosion of glowing white-green water shoots hundreds of meters into the sky, spray rains down on the people who stagger back shielding their faces, and inside the mist the silhouette of an enormous round creature rises. Camera shakes hard at the impact. Epic, photorealistic. No text.
+```
+- **이 컷이 핵심이에요.** 불덩이가 '사람들 바로 앞'에 떨어지는 게 보이는 결과를 고르세요. 수평선 너머에 떨어지면 탈락이에요.
+- 대사는 편집에서 ElevenLabs 목소리로 깔아요. Seedance가 만든 목소리가 더 자연스러우면 그걸 써요.
+
+---
+
+### 컷 3 — 착지 지점에서 솟는 거대한 물 파도, 속에 상품들이 가득 (4초) ★ 반전
 
 | 항목 | 값 |
 |---|---|
 | 영상 모드 | **이미지 → 영상** (첫 프레임 1장) |
 | 길이 | **5초** |
-| 파일 이름 | `w2_impact.mp4` |
-
-**1) 키프레임 만들기** (AI Image)
-```
-Wide shot from Haeundae beach in Busan on a bright afternoon, camera low on the sand. Small groups of people in the foreground, seen from behind, look up at the sky. Calm blue sea and a clear horizon; a bright green streak of light is descending from the sky toward the sea far away. The curve of the beach and the hotel towers on the right are softly blurred, with no readable signs. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
-```
-
-**2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
-```
-0–2s: calm beach; the people look up and point at the green streak of light descending across the sky; a woman says in Korean, "어? 저게 뭐야?" and a man shouts in Korean, "저게 뭐야?!" 2–2.5s: the fireball plunges into the sea at the horizon. 2.5–5s: a colossal column of glowing green water shoots up into the sky and a shockwave ripples across the sea toward the beach; the people flinch and shield their eyes, hats and sand blown by a gust of wind. Locked-off wide camera. Sound: a distant deep boom. No text.
-```
-
----
-
-### 컷 3 — 거대한 물 파도 속에 상품들이 가득 (5초) ★ 반전
-
-| 항목 | 값 |
-|---|---|
-| 영상 모드 | **이미지 → 영상** (첫 프레임 1장) |
-| 길이 | **6초** |
 | 파일 이름 | `w3_wave.mp4` |
 
 **1) 키프레임 만들기** (AI Image)
 ```
-From Haeundae beach looking out to sea: a colossal turquoise ocean wave as tall as skyscrapers rises on the horizon, its curling face backlit by the sun so the water is crystal clear and translucent. Suspended inside the glowing water, clearly visible like objects in glass, are hundreds of shopping products: flat-screen TVs, laptops, smartphones, headphones, a refrigerator, a washing machine, sneakers, game consoles, robot vacuums and handbags, all unbranded with no logos. Tiny people stand on the beach in the foreground. Spectacular, whimsical yet photorealistic, epic scale. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
+From Haeundae beach looking out to sea: right where the giant object landed, only a hundred meters offshore, a colossal turquoise ocean wave as tall as skyscrapers rises, its curling face backlit by the sun so the water is crystal clear and translucent. Suspended inside the glowing water, clearly visible like objects in glass, are hundreds of shopping products: flat-screen TVs, laptops, smartphones, headphones, a refrigerator, a washing machine, sneakers, game consoles, robot vacuums and handbags, all unbranded with no logos. Tiny people stand on the beach in the foreground. Spectacular, whimsical yet photorealistic, epic scale. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
 ```
 
 **2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
 ```
-0–2s: the colossal translucent wave on the horizon swells and rises even higher, sunlight shining through it. 2–6s: it rolls toward the beach and, as it gets closer, the products floating inside the clear water become clearly visible — TVs, laptops, smartphones, headphones, a refrigerator, sneakers — tumbling slowly in the glowing turquoise water; the camera slowly pushes in. Spectacular and joyful, not scary, no destruction. No logos. No text.
+0–2s: the colossal translucent wave rising right in front of the beach swells even higher, sunlight shining through it. 2–6s: it rolls toward the beach and, as it gets closer, the products floating inside the clear water become clearly visible — TVs, laptops, smartphones, headphones, a refrigerator, sneakers — tumbling slowly in the glowing turquoise water; the camera slowly pushes in. Spectacular and joyful, not scary, no destruction. No logos. No text.
 ```
 
 ---
 
-### 컷 4 — 장바구니·대야로 마중 → 상품이 밀려와 환호 (5초)
+### 컷 4 — 장바구니·대야로 마중 → 상품이 밀려와 환호 (4.5초)
 
 | 항목 | 값 |
 |---|---|
 | 영상 모드 | **이미지 → 영상** (첫 프레임 1장) |
-| 길이 | **6초** |
+| 길이 | **5초** |
 | 파일 이름 | `w4_welcome.mp4` |
 
 **1) 키프레임 만들기** (AI Image)
@@ -220,7 +222,7 @@ Medium-wide shot from behind a row of excited Korean people standing on Haeundae
 
 ---
 
-### 컷 5 — 바다에 둥둥 뜬 택이 윙크 (4초)
+### 컷 5 — 해변 바로 앞에 우뚝 선 거대한 택이가 윙크 (4초)
 
 | 항목 | 값 |
 |---|---|
@@ -230,13 +232,14 @@ Medium-wide shot from behind a row of excited Korean people standing on Haeundae
 
 **1) 키프레임 만들기** (AI Image — **택이 참고 이미지 2장 첨부**)
 ```
-Calm sparkling sea off Haeundae beach in golden afternoon light. The colossal green character from the attached images floats in the water like a giant inflatable toy: its round glossy green head with the small horn and its purple waist pouch with its own cartoon eyes are above the water. Unbranded products — a TV, a laptop, headphones, sneakers — float around it on the water; the Busan skyline is far in the background, softly hazy. Photorealistic VFX creature composited into a real seascape. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
+Low-angle shot from Haeundae beach behind a crowd of people seen from behind, all looking up. Standing waist-deep in the shallow sea just in front of the beach, the colossal green character from the attached images towers over them, taller than the hotel buildings: round glossy green body, small horn on top, big white cartoon eyes, its purple waist pouch with its own cartoon eyes just above the water. Unbranded products — TVs, laptops, sneakers — lie scattered on the wet sand in front of the people. Golden afternoon light, water dripping from the character. Photorealistic VFX creature composited into a real beach scene. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
 ```
 
-**2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
+**2) 영상 생성** (AI Video, Seedance 2.5)
 ```
-0–2s: the giant character bobs gently in the waves, water dripping off its glossy head, products floating around it. 2–3.5s: it slowly turns to look straight at the camera. 3.5–5s: it gives a playful wink and the eyes on its purple pouch blink too. Cute and friendly. Sound: gentle waves and a cute pop. No text.
+0–2s: the colossal green character standing in the shallow sea sways gently, water dripping off its glossy body, and slowly looks down at the crowd. 2–3s: it gives a big playful wink and the eyes on its purple pouch blink too. 3–5s: the people cheer and wave up at it. Cute, friendly and epic. No text, no logos.
 ```
+- 윙크하는 순간에 Claude가 자막과 성우 내레이션 **"거대한 혜택이 밀려온다"**를 넣어요.
 
 ---
 

@@ -97,3 +97,35 @@ Extreme wide low-angle shot looking up from a sunny Korean apartment complex pla
 1. 베스트를 다운로드(워터마크 없음) → `shot0.mp4` ~ `shot6.mp4`로 이름 바꾸기
 2. 구글 드라이브 폴더에 올리기 → **링크가 있는 모든 사용자** → 링크를 채팅에 붙여넣기
 3. **증빙**: 컷마다 Dreamina 화면(프롬프트 + 결과) 캡처 1장, 구독 영수증 1장
+
+---
+
+## ★ 7. 프리비즈 방식 (3D 참고 영상 → AI가 실사로 덧그리기)
+
+Claude가 만든 러프 3D 영상(`previs/ref_videos/shotN_*.mp4`)을 **Omni Reference에 @Video1로 올리면**, Seedance가 그 카메라 무빙·구도·인물 위치·손짓·타이밍을 따라가면서 실사로 다시 그려요.
+글로만 시킬 때보다 **손 크기가 점점 커지는 흐름, 마지막 틸트업, 택이가 떠오르는 속도**가 훨씬 정확하게 나와요.
+
+| 컷 | 참고 영상 | 길이 |
+|---|---|---|
+| 0 | `shot0_student.mp4` | 4초 |
+| 1 | `shot1_market.mp4` | 4초 |
+| 2 | `shot2_gym.mp4` | 4초 |
+| 3 | `shot3_truck.mp4` | 4초 |
+| 4 | `shot4_apartment.mp4` | 4초 |
+| 5 | `shot5_playground.mp4` | 4초 |
+| 6 | `shot6_taki.mp4` + 택이 이미지 2장 | 6초 |
+
+**방법**
+1. 모드를 **Omni Reference**로 바꾸고 참고 영상 업로드 → **@Video1** (컷 6은 택이 이미지도 같이 → @Image1, @Image2)
+2. 9:16, 720p, 길이는 위 표대로
+3. 프롬프트 = **아래 머리말 + 4장의 그 컷 프롬프트**를 이어 붙이기
+
+**머리말 (컷 0~6 공통, 맨 앞에 붙이기)**
+```
+@Video1 is only a rough 3D blocking animation. Follow its camera angle, camera movement, framing, the person's position, body pose, arm gestures and timing exactly. Do not copy its gray mannequin look, simple shapes or flat colors: render everything as a real, photorealistic scene with real people, real skin, real clothing and real locations.
+```
+
+**주의**
+- 참고 영상을 넣으면 크레딧이 더 들 수 있어요. 참고 영상 길이도 계산에 들어가는 경우가 있어서요. 첫 컷을 뽑고 크레딧이 얼마나 줄었는지 꼭 보세요.
+- 결과가 마네킹처럼 3D 느낌으로 나오면 머리말 끝에 `Ignore the reference's visual style completely.`를 추가하세요.
+- 동작이 참고 영상과 어긋나도 손짓만 크게 잘 나오면 괜찮아요. 편집에서 2.5초만 써요.

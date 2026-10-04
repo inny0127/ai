@@ -11,3 +11,5 @@
 - 음악·효과음: `eleven.mjs`(ElevenLabs, `ELEVENLABS_API_KEY` 필요)를 먼저 쓰고, 없으면 `synth.py`의 코드 합성음 사용
 - 정지컷 확인: `node edit.mjs --stills 1,16,21`
 - `편집템플릿_미리보기.mp4` — 클립 없이 임시 화면으로 돌린 편집 틀
+
+- `previs/` — Three.js 러프 3D 프리비즈 (`node previs/render.mjs`). 결과 `previs/ref_videos/`를 Seedance Omni Reference에 @Video1로 넣어 실사로 덧그리기

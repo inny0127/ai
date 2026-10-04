@@ -112,11 +112,12 @@ for e in C['events']:
     put({'thump': thump, 'braam': braam, 'boing': boing, 'meteor': meteor}[k](g), at)
 
 # 엔드카드: 따뜻한 화음 + 4음 징글
-t = tt(total - end0)
+J = C.get('jingle') if C.get('jingle') is not None else end0
+t = tt(max(0.01, total - J))
 pad = sum(np.sin(2 * np.pi * f * t) for f in (261.6, 329.6, 392.0, 523.3)) / 4 * np.minimum(1, t / 0.05) * np.exp(-t / 2.5) * 0.25
-put(st(pad, 0.2), end0)
+put(st(pad, 0.2), J)
 for j, f in enumerate((523.3, 659.3, 784.0, 1046.5)):
-    put(st(bell(f, 1.8 if j == 3 else 0.7) * 0.32, (j - 1.5) * 0.25), end0 + 1.1 + j * 0.17)
+    put(st(bell(f, 1.8 if j == 3 else 0.7) * 0.32, (j - 1.5) * 0.25), J + 1.1 + j * 0.17)
 
 # 정적 구간은 완전히 무음 (앞 소리 잔향도 잘라냄)
 for s0, s1 in C.get('silence', []):

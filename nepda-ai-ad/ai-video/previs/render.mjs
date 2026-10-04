@@ -11,8 +11,9 @@ const require = createRequire('/opt/node22/lib/node_modules/');
 const { chromium } = require('playwright');
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname), BASE = path.resolve(ROOT, '../..');
-const OUT = path.join(ROOT, 'out'); fs.mkdirSync(OUT, { recursive: true });
 const arg = k => { const i = process.argv.indexOf('--' + k); return i > 0 ? process.argv[i + 1] : null; };
+const PAGE = arg('page') || 'index.html';            // --page wave.html : 다른 콘티
+const OUT = path.join(ROOT, arg('out') || 'out'); fs.mkdirSync(OUT, { recursive: true });
 const FPS = 24, W = 720, H = 1280;
 const run = (args, feed) => new Promise((res, rej) => {
   const p = spawn('ffmpeg', ['-y', '-loglevel', 'error', ...args], { stdio: [feed ? 'pipe' : 'ignore', 'inherit', 'inherit'] });
@@ -30,7 +31,7 @@ const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--ena
 const page = await browser.newPage({ viewport: { width: W, height: H } });
 page.on('pageerror', e => console.error('[page]', e.message));
 page.on('console', m => m.type() === 'error' && console.error('[console]', m.text()));
-await page.goto(`http://127.0.0.1:${server.address().port}/ai-video/previs/index.html`);
+await page.goto(`http://127.0.0.1:${server.address().port}/ai-video/previs/${PAGE}`);
 await page.waitForFunction(() => window.READY, null, { timeout: 120000 });
 const SHOTS = await page.evaluate(() => window.SHOTS);
 const only = arg('only') ? arg('only').split(',').map(Number) : SHOTS.map((_, i) => i);

@@ -4,19 +4,28 @@
 > 이 문서만 위에서부터 따라 하면 돼요. 프롬프트는 전부 **통째로 복사**하면 돼요.
 > ⚠️ Dreamina 화면은 자주 바뀌어서 **버튼 이름이 조금 다를 수 있어요.** 기능 기준으로 비슷한 이름을 찾으면 돼요.
 
-## 한눈에 보는 콘티 (29.5초)
+## 한눈에 보는 콘티 (29.5초) — 3D 애니매틱으로 미리 보기: `animatic/밀려온다_애니매틱_9x16.mp4`
 
 | 시간 | 장면 | 소리 (Claude가 편집에서) |
 |---|---|---|
-| 0~3.5초 | 우주: 초록 불덩이(택이)가 한반도 대기권을 뚫고 들어와요 | 굉음 두 번 |
-| 3.5~8초 | 해운대: 사람들이 하늘을 가리키다가 → 수평선에 풍덩 → 거대한 물기둥, 충격파 | **쿵!** |
-| 8~13초 | 수평선에 솟는 거대한 물 파도… 다가올수록 **투명한 물속에 TV·노트북·폰·냉장고가 떠 있는 게** 보여요 | 브아아암 → 10초부터 신나는 비트 |
-| 13~18초 | 장바구니·대야·쇼핑백 들고 기다림 → 파도가 발목 높이로 부드럽게 밀려와 상품들을 모래 위에 내려놓음 → 환호하며 줍기 | 비트 + 환호 |
-| 18~22초 | 바다에 둥둥 뜬 택이가 카메라를 보고 윙크 | 뾰옹 |
-| 22~24.5초 | 검은 화면 카드: **거대한 혜택이 밀려온다** | 쿵 |
-| 24.5~29.5초 | KV 엔드카드 + 10.26 ~ 11.8 + 검색창 | 징글 |
+| 0~3초 | 우주: 초록 불덩이(택이)가 한반도 대기권을 뚫고 들어와요 | 🎵 차라투스트라 시작 + 굉음 |
+| 3~7.5초 | 해운대: 사람들이 하늘을 가리키며 **"어? 저게 뭐야?"** → 수평선에 풍덩 → 물기둥 | 🎵 "빠–바–밤!" 큰 화음 = **쿵!** |
+| 7.5~12.5초 | 수평선에 솟는 거대한 물 파도, 물속에 TV·노트북·폰·냉장고 | 🎵 산왕의 궁전 (점점 빨라짐) |
+| 12.5~17.5초 | 장바구니·대야로 마중 → 파도가 상품을 모래 위에 내려놓음 → 환호 | 🎵 산왕의 궁전 클라이맥스 '쾅쾅' |
+| 17.5~22초 | 바다에 뜬 택이가 **윙크** + 자막·내레이션 **"거대한 혜택이 밀려온다"** | 뾰옹 + 예고편 성우 |
+| 22~29.5초 | **상품으로 뒤덮인 해운대 항공샷** 위에 **KV 엔드카드**가 얹혀요 (10.26 ~ 11.8 + 검색창) | 🎵 차라투스트라 피날레 |
 
-AI로 만드는 컷은 **5개**뿐이에요. 카드와 엔드카드, 모든 소리는 Claude가 편집에서 만들어요.
+AI로 만드는 컷은 **6개**예요. 자막, 엔드카드, 음악, 효과음, 내레이션은 Claude가 편집에서 넣어요.
+
+**음악 (저작권 확인 완료)**
+- 「차라투스트라는 이렇게 말했다」(R. 슈트라우스): Kevin MacLeod 연주, **CC BY 3.0**
+  - 상업 이용 가능해요. 대신 **출처 표기 필수** → 업로드 캡션에 아래 문구를 넣으세요.
+    `Music: "Also Sprach Zarathustra" Kevin MacLeod (incompetech.com) / Licensed under CC BY 3.0`
+- 「산왕의 궁전에서」(그리그): Musopen 연주, **퍼블릭 도메인**
+
+**목소리**
+- "저게 뭐야?": Seedance가 컷 2에서 같이 만들어요 (뒷모습이라 입모양 신경 안 써도 돼요).
+- 내레이션: 애니매틱은 임시 기계음이에요. 최종은 ElevenLabs 성우 목소리로 바꿔요.
 
 ---
 
@@ -66,11 +75,11 @@ Dreamina에는 이번에 쓸 작업 공간이 **2개** 있어요.
 | 항목 | 내용 | 크레딧(대략) |
 |---|---|---|
 | 키프레임 이미지 | 약 10~15장 | 약 50~150 |
-| 영상 5컷 1번씩 | 5+6+6+6+5 = 28초 | 약 1,040 |
+| 영상 6컷 1번씩 | 4+5+6+6+5+8 = 34초 | 약 1,260 |
 | 컷 3(상품이 든 파도) 한 번 더 (제일 어려움) | 6초 | 약 220 |
-| **합계** | | **약 1,300~1,400 → Basic에 딱 들어와요** |
+| **합계** | | **약 1,500~1,600 → Basic(1,575)에 아슬아슬해요** |
 
-- 여유가 거의 없으니 **키프레임을 충분히 다듬은 뒤** 영상을 뽑으세요. 키프레임이 좋으면 영상은 한 번에 나오는 경우가 많아요.
+- 여유가 거의 없으니 키프레임은 **Seedream 4.6**(장당 약 3크레딧)으로 만들고, **키프레임을 충분히 다듬은 뒤** 영상을 뽑으세요. 키프레임이 좋으면 영상은 한 번에 나오는 경우가 많아요.
 - 모자라면 컷 2·4는 480p로 뽑거나, Standard(첫 달 $22)로 올리면 돼요.
 
 ---
@@ -131,12 +140,12 @@ Dreamina에는 이번에 쓸 작업 공간이 **2개** 있어요.
 > 영상 프롬프트에 `0–2s:` 같은 **시간대별 동작**을 넣었어요. 길어진 컷이 늘어지지 않게 하려는 거예요.
 > **컷 1부터** 하세요. 컷 1이 나오면 Claude에게 먼저 보여 주세요.
 
-### 컷 1 — 우주: 초록 불덩이(택이)가 대기권 진입 (3.5초) ★ 훅
+### 컷 1 — 우주: 초록 불덩이(택이)가 대기권 진입 (3초) ★ 훅
 
 | 항목 | 값 |
 |---|---|
 | 영상 모드 | **이미지 → 영상** (첫 프레임 1장) |
-| 길이 | **5초** |
+| 길이 | **4초** |
 | 파일 이름 | `w1_meteor.mp4` |
 
 **1) 키프레임 만들기** (AI Image — **택이 참고 이미지 2장 첨부**)
@@ -146,7 +155,7 @@ View from low Earth orbit over the Korean Peninsula and the surrounding sea at g
 
 **2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
 ```
-0–2s: the glowing green fireball plunges deeper into the atmosphere, its flames and green plasma trail growing brighter and larger. 2–5s: it pierces through the clouds and streaks diagonally down toward the southeast coast of Korea, trailing green fire and sparks; the camera tracks it. Epic and fast. Sound: a rising roar. No text.
+0–1.5s: the glowing green fireball plunges deeper into the atmosphere, its flames and green plasma trail growing brighter and larger. 1.5–4s: it pierces through the clouds and streaks diagonally down toward the southeast coast of Korea, trailing green fire and sparks; the camera tracks it. Epic and fast. Sound: a rising roar. No text.
 ```
 
 ---
@@ -156,7 +165,7 @@ View from low Earth orbit over the Korean Peninsula and the surrounding sea at g
 | 항목 | 값 |
 |---|---|
 | 영상 모드 | **이미지 → 영상** (첫 프레임 1장) |
-| 길이 | **6초** |
+| 길이 | **5초** |
 | 파일 이름 | `w2_impact.mp4` |
 
 **1) 키프레임 만들기** (AI Image)
@@ -166,7 +175,7 @@ Wide shot from Haeundae beach in Busan on a bright afternoon, camera low on the 
 
 **2) 영상 생성** (AI Video, Seedance 2.5, 키프레임을 첫 프레임으로)
 ```
-0–2s: calm beach; the people look up and point at the green streak of light descending across the sky. 2–3s: the fireball plunges into the sea at the horizon. 3–6s: a colossal column of glowing green water shoots up into the sky and a shockwave ripples across the sea toward the beach; the people flinch and shield their eyes, hats and sand blown by a gust of wind. Locked-off wide camera. Sound: a distant deep boom. No text.
+0–2s: calm beach; the people look up and point at the green streak of light descending across the sky; a woman says in Korean, "어? 저게 뭐야?" and a man shouts in Korean, "저게 뭐야?!" 2–2.5s: the fireball plunges into the sea at the horizon. 2.5–5s: a colossal column of glowing green water shoots up into the sky and a shockwave ripples across the sea toward the beach; the people flinch and shield their eyes, hats and sand blown by a gust of wind. Locked-off wide camera. Sound: a distant deep boom. No text.
 ```
 
 ---
@@ -231,11 +240,32 @@ Calm sparkling sea off Haeundae beach in golden afternoon light. The colossal gr
 
 ---
 
+### 컷 6 — 상품으로 뒤덮인 해운대 항공샷 (+ KV 엔드카드) (7.5초)
+
+| 항목 | 값 |
+|---|---|
+| 영상 모드 | **이미지 → 영상** (첫 프레임 1장) |
+| 길이 | **8초** |
+| 파일 이름 | `w6_aerial.mp4` |
+
+**1) 키프레임 만들기** (AI Image — **택이 참고 이미지 2장 첨부**)
+```
+High aerial drone shot over Haeundae beach in Busan in golden afternoon light, looking down at an angle from above the sea toward the beach. The entire long sandy beach is covered with thousands of colorful shopping products — flat-screen TVs, laptops, refrigerators, washing machines, sneakers, headphones, shopping bags — and crowds of happy people celebrating among them. Gentle turquoise waves; the high-rise skyline behind the beach; in the sea on the left, the colossal green character from the attached images floats and waves. All products unbranded, no logos. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
+```
+
+**2) 영상 생성** (AI Video, Seedance 2.5)
+```
+0–3s: slow cinematic drone rise over the sea toward the beach covered in products, people cheering and holding up TVs and laptops. 3–8s: the camera keeps slowly rising and pulling back, revealing the whole beach covered in products under golden light; the giant green character in the sea waves happily. Joyful and spectacular. No text, no logos.
+```
+- 이 컷 위에 KV 엔드카드가 얹혀요. **화면 가운데가 너무 복잡하지 않은** 결과를 고르세요.
+
+---
+
 ## 7. Claude에게 넘기기
 
-1. 완성 영상 5개 파일 이름 확인:
-   `w1_meteor.mp4` `w2_impact.mp4` `w3_wave.mp4` `w4_welcome.mp4` `w5_taki.mp4`
-2. 구글 드라이브에 폴더 만들기 → 5개 업로드 (키프레임 이미지도 같이 넣어 주면 좋아요)
+1. 완성 영상 6개 파일 이름 확인:
+   `w1_meteor.mp4` `w2_impact.mp4` `w3_wave.mp4` `w4_welcome.mp4` `w5_taki.mp4` `w6_aerial.mp4`
+2. 구글 드라이브에 폴더 만들기 → 6개 업로드 (키프레임 이미지도 같이 넣어 주면 좋아요)
 3. 폴더 **공유 → 일반 액세스: 링크가 있는 모든 사용자** → 링크 복사 → 채팅에 붙여넣기
 4. 그러면 Claude가 다음을 다 해요:
    - 컷 길이 맞추기

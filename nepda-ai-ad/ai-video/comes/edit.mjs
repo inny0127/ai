@@ -55,9 +55,11 @@ for (const s of shots) {
     if (s.type !== 'card') console.log(`컷 ${s.i}: 임시 화면 (${s.file} 없음)`);
   }
 }
+if (cfg.endcard > 0) { // endcard 0이면 마지막 컷 위에 KV를 얹는 방식(type: kvover)
 const endSeg = path.join(OUT, 'seg_end.mkv'); segs.push(endSeg);
 await run(['-f', 'lavfi', '-i', `color=c=white:s=${W}x${H}:r=${FPS}:d=${cfg.endcard}`, '-f', 'lavfi', '-t', String(cfg.endcard), '-i', 'anullsrc=r=48000:cl=stereo',
   '-vf', 'format=yuv420p', '-t', String(cfg.endcard), '-c:v', 'libx264', '-crf', '12', '-preset', 'fast', '-c:a', 'pcm_s16le', endSeg]);
+}
 fs.writeFileSync(path.join(OUT, 'list.txt'), segs.map(f => `file '${f}'`).join('\n'));
 const baseVid = path.join(OUT, 'base.mkv');
 await run(['-f', 'concat', '-safe', '0', '-i', path.join(OUT, 'list.txt'), '-c', 'copy', baseVid]);
@@ -101,12 +103,21 @@ await browser.close(); server.close();
 
 // --- 4. 사운드: 클립 현장음 + 사운드 디자인(쿵·브아아암·드론·정적·뾰옹·징글)
 const lastEvent = events.filter(e => e.type === 'braam').at(-1)?.t ?? end0;
-execFileSync('python3', [path.join(TOOL, 'synth.py'), JSON.stringify({ events, total, end0, drone: cfg.drone === null ? null : (cfg.drone || [shots[1]?.t0 ?? 1, silence[0]?.[0] ?? lastEvent + 2]), silence, music: cfg.music || null }), AUD], { stdio: 'inherit' });
+execFileSync('python3', [path.join(TOOL, 'synth.py'), JSON.stringify({ events, total, end0, drone: cfg.drone === null ? null : (cfg.drone || [shots[1]?.t0 ?? 1, silence[0]?.[0] ?? lastEvent + 2]), silence, music: cfg.music || null, jingle: cfg.jingle ?? null }), AUD], { stdio: 'inherit' });
 const sfx = fs.existsSync(path.join(AUD, 'eleven_comes.mp3')) ? path.join(AUD, 'eleven_comes.mp3') : path.join(AUD, 'comes_sfx.wav');
 const mute = silence.map(([a, b]) => `volume=enable='between(t,${a},${b})':volume=0`).join(',') || 'anull';
 const final = path.join(OUT, cfg.output || '그것이온다_9x16.mp4');
-await run(['-i', video, '-i', baseVid, '-i', sfx, '-filter_complex',
-  `[1:a]aresample=48000,${mute}[amb];[2:a]aresample=48000,aformat=channel_layouts=stereo[fx];[amb][fx]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.9[a]`,
+// 음악·목소리 트랙: tracks: [{ file, from, to, at, gain, fadeIn, fadeOut }] (프로젝트 폴더 기준 경로)
+const tracks = (cfg.tracks || []).filter(k => fs.existsSync(path.join(ROOT, k.file)));
+const tIn = tracks.flatMap(k => ['-i', path.join(ROOT, k.file)]);
+const tf = tracks.map((k, i) => {
+  const d = (k.to ?? 9999) - (k.from ?? 0), fo = k.fadeOut ? `,afade=t=out:st=${Math.max(0, d - k.fadeOut)}:d=${k.fadeOut}` : '';
+  return `[${3 + i}:a]aresample=48000,aformat=channel_layouts=stereo,atrim=start=${k.from ?? 0}${k.to != null ? `:end=${k.to}` : ''},asetpts=PTS-STARTPTS` +
+    `${k.fadeIn ? `,afade=t=in:d=${k.fadeIn}` : ''}${fo},volume=${k.gain ?? 1},adelay=${Math.round((k.at ?? 0) * 1000)}:all=1[t${i}]`;
+}).join(';');
+await run(['-i', video, '-i', baseVid, '-i', sfx, ...tIn, '-filter_complex',
+  `[1:a]aresample=48000,${mute}[amb];[2:a]aresample=48000,aformat=channel_layouts=stereo,volume=${cfg.sfxGain ?? 1}[fx];${tf ? tf + ';' : ''}` +
+  `[amb][fx]${tracks.map((_, i) => `[t${i}]`).join('')}amix=inputs=${2 + tracks.length}:duration=first:normalize=0,alimiter=limit=0.9[a]`,
   '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', '-movflags', '+faststart', '-shortest', final]);
 console.log('done', final);
 

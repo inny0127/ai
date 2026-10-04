@@ -1,0 +1,149 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// 실사 AI 클립 위에 얹는 자막·크기 게이지·KV 엔드카드 (투명 RGBA 프레임)
+const W = 1080, H = 1920, G = '#00F550', P = '#9162FF', K = '#000';
+const cv = document.getElementById('c'), x = cv.getContext('2d', { willReadFrequently: true });
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const ease = t => 1 - Math.pow(1 - clamp(t), 3);
+const back = t => { t = clamp(t); const c = 2.2; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+const FONT = '"Pretendard"';
+let CFG, TL, IMG = {};
+
+function load(src) { return new Promise((r, j) => { const i = new Image(); i.onload = () => r(i); i.onerror = j; i.src = src; }); }
+window.init = async cfg => {
+  CFG = cfg;
+  for (const [w, f] of [[900, 'Pretendard-Black'], [800, 'Pretendard-ExtraBold'], [700, 'Pretendard-Bold']]) {
+    const ff = new FontFace('Pretendard', `url(../assets/fonts/${f}.otf)`, { weight: String(w) });
+    document.fonts.add(await ff.load());
+  }
+  IMG.kv = await load('../assets/kv_banner.png');
+  IMG.logo = await load('../assets/logo_hi.png');
+  // 타임라인: 컷 시작 시각
+  let t = 0; TL = cfg.shots.map((s, i) => { const d = s.out - s.in, o = { ...s, i, t0: t, t1: t + d, d }; t += d; return o; });
+  TL.end0 = t; TL.total = t + cfg.endcard;
+  return TL.total;
+};
+
+function strokeText(str, cx, cy, size, fill, stroke, sw, weight = 900) {
+  x.font = `${weight} ${size}px ${FONT}`; x.textAlign = 'center'; x.textBaseline = 'middle';
+  x.lineJoin = 'round'; x.miterLimit = 2;
+  const lines = str.split('\n'), lh = size * 1.12, y0 = cy - (lines.length - 1) * lh / 2;
+  lines.forEach((l, k) => {
+    if (sw) { x.strokeStyle = stroke; x.lineWidth = sw; x.strokeText(l, cx, y0 + k * lh); }
+    x.fillStyle = fill; x.fillText(l, cx, y0 + k * lh);
+  });
+}
+function rrect(cx, cy, w, h, r) { x.beginPath(); x.roundRect(cx - w / 2, cy - h / 2, w, h, r); }
+
+// 상단 질문 + 혜택 크기 게이지
+function drawQuestion(t, s) {
+  const a = back((t - 0.0) / 0.35), y = 250;
+  x.save(); x.translate(W / 2, y); x.scale(a, a);
+  x.font = `800 54px ${FONT}`;
+  const q = CFG.question, w = x.measureText(q).width + 90;
+  rrect(0, 0, w, 104, 52); x.fillStyle = 'rgba(0,0,0,0.88)'; x.fill();
+  // '넾다세일'만 초록
+  x.textBaseline = 'middle'; x.textAlign = 'left';
+  const head = q.slice(0, 4), rest = q.slice(4), hw = x.measureText(head).width;
+  let lx = -(hw + x.measureText(rest).width) / 2;
+  x.fillStyle = G; x.fillText(head, lx, 3); x.fillStyle = '#fff'; x.fillText(rest, lx + hw, 3);
+  x.restore();
+
+  // 게이지: 컷마다 커지다가 마지막에 화면 밖으로 뚫고 나감
+  const gy = y + 92, gw = 620, gh = 26, gx = W / 2 - gw / 2;
+  const prev = s.i ? TL[s.i - 1].meter : 0, lt = t - s.t0 - s.say;
+  const m = prev + (s.meter - prev) * back(lt / 0.45);
+  const shake = s.meter > 1 ? Math.sin(t * 90) * 6 * clamp(lt / 0.3) : 0;
+  x.save(); x.translate(shake, 0); x.globalAlpha = ease(t / 0.35);
+  rrect(W / 2, gy, gw + 10, gh + 10, (gh + 10) / 2); x.fillStyle = 'rgba(0,0,0,0.7)'; x.fill();
+  const fw = Math.max(gh, gw * clamp(m, 0, 4));
+  x.beginPath(); x.roundRect(gx, gy - gh / 2, fw, gh, gh / 2);
+  const gr = x.createLinearGradient(gx, 0, gx + gw, 0); gr.addColorStop(0, G); gr.addColorStop(1, P);
+  x.fillStyle = gr; x.fill();
+  x.font = `800 30px ${FONT}`; x.textAlign = 'left'; x.textBaseline = 'middle'; x.fillStyle = '#fff';
+  x.fillText('혜택 크기', gx + 4, gy + 42);
+  x.restore();
+}
+
+// 대사 자막: 컷이 넘어갈수록 글자도 커짐
+function drawCaption(t, s) {
+  const lt = t - s.t0 - s.say; if (lt < 0) return;
+  const p = back(lt / 0.28), rot = (s.i % 2 ? 1 : -1) * 3.5 * Math.PI / 180;
+  let size = s.size;
+  x.font = `900 ${size}px ${FONT}`;
+  const widest = Math.max(...s.caption.split('\n').map(l => x.measureText(l).width));
+  if (widest > 940) size *= 940 / widest;
+  x.save(); x.translate(W / 2, 1330); x.rotate(rot); x.scale(p, p);
+  const big = s.meter > 1;
+  if (big) { x.shadowColor = P; x.shadowBlur = 0; x.shadowOffsetX = 10; x.shadowOffsetY = 12; }
+  strokeText(s.caption, 0, 0, size, big ? G : '#fff', K, size * 0.2);
+  x.restore();
+}
+
+function drawEarth(t, s) {
+  const lt = t - s.t0 - s.say; if (lt < 0) return;
+  x.save(); x.globalAlpha = ease(lt / 0.5);
+  const sc = 1 + 0.05 * (1 - ease(lt / 0.8));
+  x.translate(W / 2, 1420); x.scale(sc, sc);
+  x.shadowColor = 'rgba(0,0,0,0.6)'; x.shadowBlur = 30;
+  strokeText(s.caption, 0, 0, 150, '#fff', null, 0, 900);
+  x.restore();
+}
+
+// KV 엔드카드: 공식 배너의 파편을 잘라 위·아래에서 꽂고, 로고가 쾅
+function drawEnd(t) {
+  const lt = t - TL.end0;
+  x.fillStyle = '#fff'; x.fillRect(0, 0, W, H);
+  const kv = IMG.kv, sh = lt > 0.12 && lt < 0.5 ? Math.sin(lt * 120) * 14 * (1 - (lt - 0.12) / 0.38) : 0;
+  x.save(); x.translate(sh, -sh * 0.6);
+  const drift = lt * 6;
+  // 왼쪽 파편(배너 x 0~790) → 화면 위쪽
+  { const s = 1.08, w = 790 * s, h = 617 * s, a = back(lt / 0.4);
+    x.drawImage(kv, 0, 0, 790, 617, -w * (1 - a) - 20 - drift, -110 - h * (1 - a) * 0.3, w, h); }
+  // 오른쪽 파편(배너 x 1395~2185) → 화면 아래쪽
+  { const s = 1.08, w = 790 * s, h = 617 * s, a = back((lt - 0.06) / 0.4);
+    x.drawImage(kv, 1395, 0, 790, 617, W - w + 20 + w * (1 - a) + drift, H - h + 150 + h * (1 - a) * 0.3, w, h); }
+  // 로고 슬램
+  const la = clamp((lt - 0.08) / 0.14), lsc = lt < 0.22 ? 2.6 - 1.6 * ease(la) : 1 + 0.08 * Math.exp(-(lt - 0.22) * 9) * Math.cos((lt - 0.22) * 30);
+  if (lt > 0.08) {
+    const lw = 900, lh = lw * IMG.logo.height / IMG.logo.width;
+    x.save(); x.globalAlpha = la; x.translate(W / 2, 770); x.scale(lsc, lsc); x.rotate(-0.02);
+    x.drawImage(IMG.logo, -lw / 2, -lh / 2, lw, lh); x.restore();
+  }
+  const up = (d, k) => { const a = ease((lt - d) / 0.35); x.globalAlpha = a; return (1 - a) * 40 * k; };
+  x.save();
+  let o = up(0.55, 1); strokeText('거대한 혜택이 찾아온다!', W / 2, 990 + o, 66, K, null, 0, 800);
+  o = up(0.7, 1); strokeText('10.26 ~ 11.8', W / 2, 1110 + o, 120, K, null, 0, 900);
+  o = up(0.95, 1);
+  x.font = `800 46px ${FONT}`; const pw = x.measureText('네이버플러스 스토어에서 만나요').width + 80;
+  rrect(W / 2, 1240 + o, pw, 92, 46); x.fillStyle = K; x.fill();
+  x.fillStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle';
+  x.fillText('네이버플러스 스토어에서 만나요', W / 2, 1243 + o);
+  x.restore();
+  x.restore();
+  // 들어오는 순간 흰 플래시
+  if (lt < 0.18) { x.fillStyle = `rgba(255,255,255,${1 - lt / 0.18})`; x.fillRect(0, 0, W, H); }
+}
+
+window.drawAt = t => {
+  x.clearRect(0, 0, W, H);
+  if (t >= TL.end0) return drawEnd(t);
+  const s = TL.find(s => t >= s.t0 && t < s.t1) || TL[TL.length - 1];
+  if (s.type === 'earth') {
+    drawEarth(t, s);
+    const k = TL.end0 - t; if (k < 0.12) { x.fillStyle = `rgba(255,255,255,${1 - k / 0.12})`; x.fillRect(0, 0, W, H); }
+    return;
+  }
+  drawQuestion(t, s); drawCaption(t, s);
+};
+window.renderAt = t => {
+  drawAt(t);
+  const d = x.getImageData(0, 0, W, H).data; let s = '';
+  for (let i = 0; i < d.length; i += 0x8000) s += String.fromCharCode.apply(null, d.subarray(i, i + 0x8000));
+  return btoa(s);
+};
+window.READY = true;
+</script></body></html>

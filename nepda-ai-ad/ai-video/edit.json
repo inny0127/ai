@@ -1,0 +1,15 @@
+{
+  "_help": "in/out = 원본 클립에서 쓸 구간(초). say = 잘라낸 컷 안에서 대사가 시작되는 시각(초) → 자막·효과음 타이밍",
+  "fps": 30,
+  "question": "넾다세일 혜택, 얼마나 클까?",
+  "shots": [
+    { "file": "clips/shot0.mp4", "in": 0.0, "out": 2.5, "say": 0.35, "caption": "요~만큼?",              "size": 72,  "meter": 0.04 },
+    { "file": "clips/shot1.mp4", "in": 0.0, "out": 2.5, "say": 0.35, "caption": "이~만큼!",              "size": 96,  "meter": 0.22 },
+    { "file": "clips/shot2.mp4", "in": 0.0, "out": 2.5, "say": 0.35, "caption": "이~~~만큼!!",           "size": 122, "meter": 0.42 },
+    { "file": "clips/shot3.mp4", "in": 0.0, "out": 2.5, "say": 0.35, "caption": "이 트럭만큼.",          "size": 124, "meter": 0.62 },
+    { "file": "clips/shot4.mp4", "in": 0.0, "out": 2.5, "say": 0.35, "caption": "저 아파트만큼은\n되겄지.", "size": 110, "meter": 0.84 },
+    { "file": "clips/shot5.mp4", "in": 0.0, "out": 2.5, "say": 0.35, "caption": "우주만큼!!!",           "size": 176, "meter": 9.0 },
+    { "file": "clips/shot6.mp4", "in": 0.0, "out": 4.0, "say": 2.3,  "caption": "진짜로.", "type": "earth" }
+  ],
+  "endcard": 5.0
+}

@@ -103,47 +103,45 @@
       "to": 9.6,
       "at": 0.0,
       "gain": 1.0,
-      "fadeOut": 1.0
-    },
-    {
-      "file": "../music/mountain_king_musopen.ogg",
-      "from": 140.5,
-      "to": 151.0,
-      "at": 7.5,
-      "gain": 1.5,
-      "fadeIn": 0.5,
-      "fadeOut": 0.8
-    },
-    {
-      "file": "../music/zarathustra_macleod_ccby.ogg",
-      "from": 72.8,
-      "to": 77.0,
-      "at": 17.8,
-      "gain": 0.4,
-      "fadeIn": 1.0
+      "fadeOut": 0.5,
+      "duck": [
+        [
+          3.3,
+          5.0,
+          0.55
+        ]
+      ]
     },
     {
       "file": "../music/zarathustra_macleod_ccby.ogg",
-      "from": 77.0,
+      "from": 63.0,
       "to": 84.5,
-      "at": 22.0,
+      "at": 8.0,
       "gain": 1.0,
-      "fadeIn": 0.4
+      "fadeIn": 0.5,
+      "duck": [
+        [
+          19.7,
+          22.5,
+          0.35
+        ]
+      ]
     },
     {
-      "file": "../voice/what_f.wav",
-      "at": 3.45,
-      "gain": 1.3
+      "file": "../voice/what_f_el.wav",
+      "at": 3.35,
+      "gain": 1.2
     },
     {
-      "file": "../voice/what_m.wav",
-      "at": 4.35,
-      "gain": 1.3
+      "file": "../voice/what_m_el.wav",
+      "at": 4.15,
+      "gain": 1.2
     },
     {
-      "file": "../voice/narration.wav",
-      "at": 19.85,
-      "gain": 1.5
+      "file": "../voice/narration_el.wav",
+      "at": 19.75,
+      "gain": 1.4
     }
-  ]
+  ],
+  "_music": "음악: 차라투스트라 한 곡 (편집점 1개: 8.0초에 서주 → 클라이맥스로 크로스페이드). 70.5초 지점 '쾅' = 상품 착지(15.5초), 77.5초 정점 = KV 등장(22.5초)"
 }

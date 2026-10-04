@@ -113,7 +113,9 @@ const tIn = tracks.flatMap(k => ['-i', path.join(ROOT, k.file)]);
 const tf = tracks.map((k, i) => {
   const d = (k.to ?? 9999) - (k.from ?? 0), fo = k.fadeOut ? `,afade=t=out:st=${Math.max(0, d - k.fadeOut)}:d=${k.fadeOut}` : '';
   return `[${3 + i}:a]aresample=48000,aformat=channel_layouts=stereo,atrim=start=${k.from ?? 0}${k.to != null ? `:end=${k.to}` : ''},asetpts=PTS-STARTPTS` +
-    `${k.fadeIn ? `,afade=t=in:d=${k.fadeIn}` : ''}${fo},volume=${k.gain ?? 1},adelay=${Math.round((k.at ?? 0) * 1000)}:all=1[t${i}]`;
+    `${k.fadeIn ? `,afade=t=in:d=${k.fadeIn}` : ''}${fo},volume=${k.gain ?? 1},adelay=${Math.round((k.at ?? 0) * 1000)}:all=1` +
+    // duck: [[시작, 끝, 배율]] — 내레이션 등 아래에서 음악을 부드럽게 줄임 (전체 타임라인 기준 초)
+    (k.duck ? `,volume='${k.duck.map(([a, b, g]) => `(1-${1 - g}*clip((t-${a})/0.25,0,1)*clip((${b}-t)/0.25,0,1))`).join('*')}':eval=frame` : '') + `[t${i}]`;
 }).join(';');
 await run(['-i', video, '-i', baseVid, '-i', sfx, ...tIn, '-filter_complex',
   `[1:a]aresample=48000,${mute}[amb];[2:a]aresample=48000,aformat=channel_layouts=stereo,volume=${cfg.sfxGain ?? 1}[fx];${tf ? tf + ';' : ''}` +

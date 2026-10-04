@@ -133,11 +133,12 @@ window.drawAt = t => {
   if (t >= TL.end0) return drawEnd(t);
   const s = TL.find(s => t >= s.t0 && t < s.t1) || TL[TL.length - 1];
   if (s.type === 'earth') {
-    drawEarth(t, s);
+    if (CFG.showCaptions) drawEarth(t, s);
     const k = TL.end0 - t; if (k < 0.12) { x.fillStyle = `rgba(255,255,255,${1 - k / 0.12})`; x.fillRect(0, 0, W, H); }
     return;
   }
-  drawQuestion(t, s); drawCaption(t, s);
+  if (CFG.showQuestion) drawQuestion(t, s);
+  if (CFG.showCaptions) drawCaption(t, s);
 };
 window.renderAt = t => {
   drawAt(t);

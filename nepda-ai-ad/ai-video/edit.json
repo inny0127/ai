@@ -1,6 +1,9 @@
 {
   "_help": "in/out = 원본 클립에서 쓸 구간(초). say = 잘라낸 컷 안에서 대사가 시작되는 시각(초) → 자막·효과음 타이밍",
   "fps": 30,
+  "_style": "미니멀: 엔드카드 전까지 화면에 글자 없음. true로 바꾸면 상단 질문+게이지 / 대사 자막이 다시 켜짐",
+  "showQuestion": false,
+  "showCaptions": false,
   "question": "넾다세일 혜택, 얼마나 클까?",
   "shots": [
     { "file": "clips/shot0.mp4", "in": 0.0, "out": 2.5, "say": 0.35, "caption": "요~만큼?",              "size": 72,  "meter": 0.04 },

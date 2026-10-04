@@ -17,7 +17,7 @@
    | Outputs per prompt | **2** (한 번에 2개씩 뽑아서 비교. 크레딧은 2배) |
 3. **크레딧 예산**: AI Pro는 월 1,000 + 매일 50크레딧
    - 사람 6컷 × 2번 × 2개 = 24개 × 20 = **480크레딧**
-   - 지구 컷: Fast로 2~4개(40~80). 마음에 안 들면 **Quality**(100크레딧)로 1~2개
+   - 택이 컷: 사람 컷보다 어려워서 Fast로 4~6개(80~120). 제일 좋은 프롬프트로 **Quality**(100크레딧) 1~2개
    - 합계 600~800크레딧. 여유 있어요.
 
 > 'Veo' 워터마크(오른쪽 아래)는 AI Pro에서 붙어요. **지우지 말고 그대로 두세요.**
@@ -73,7 +73,26 @@ Medium shot, handheld. A friendly Korean grandmother in her 70s with short perme
 Medium-wide shot, low angle looking slightly up, handheld. An energetic Korean boy about 9 years old wearing a yellow backpack stands in a sunny playground. A hand holding a small green microphone is lowered toward him from the right edge of the frame; the interviewer is never shown, only the hand. He jumps up high, throws both arms toward the sky and shouts in Korean at the top of his lungs: "우주만큼!!!" The camera then tilts up quickly to follow his arms into the bright blue sky. Ambient noise: playground sounds. No background music. Shot vertically on a smartphone, handheld, natural daylight, realistic Korean street interview vlog style, candid and authentic, natural skin texture. The person speaks Korean clearly with accurate lip sync. The screen contains no subtitles, no captions, no text, no logos.
 ```
 
-### 컷 6 — 지구 선물포장 (반전)
+### 컷 6 — 하늘을 채우는 거대한 택이 (반전) ★ 바뀜
+> 처음 안은 '선물포장된 지구'였어요. 그런데 네이버 공식 티저가 이미 **우주 크기 비교**(지구 → 토성 → 태양 → 초록 행성 택이)라서 겹쳐요.
+> 그래서 **도시 하늘 위로 떠오르는 거대 택이**로 바꿨어요. 공식 FAQ에서 택이 사용을 허용했고, 공식 광고와도 경쟁작(하늘의 거대 상자)과도 달라요.
+
+**모드: Ingredients to Video** (Flow에서 모드를 바꾸고 참고 이미지 2장 업로드)
+- `ref/taki_front.png` (정면), `ref/taki_full.png` (전신)
+- 9:16이 안 보이면 아래 '대체 방법'으로 하세요.
+
+```
+Extreme wide low-angle shot looking up from a sunny Korean apartment complex playground, vertical framing. Behind the tall white apartment buildings, a gigantic glossy green character, exactly the character from the reference images (a round, soft, jelly-like green body with a small horn on top, big white cartoon eyes, short stubby arms, and a purple waist pouch that has its own pair of cartoon eyes), slowly rises above the rooftops like a sunrise. It is so enormous that it fills half of the sky, far taller than the buildings. Its huge eyes look down at the camera and it gives a playful wink. Birds fly past; a few tiny people on the ground stop and look up. The character keeps exactly the same design, colors and proportions as the reference, rendered as glossy 3D like the reference. SFX: a deep rumble as it rises, then a cute giant "boing" when it winks. No background music. Photorealistic city, cinematic, natural daylight. The screen contains no subtitles, no text, no logos.
+```
+
+**대체 방법** (Ingredients가 안 되거나 택이가 안 닮게 나올 때)
+1. Gemini 앱(Nano Banana Pro)에 참고 이미지 2장을 올리고, 아래 프롬프트로 **세로 정지 이미지**부터 만들기
+   ```
+   Using the green character in the attached images (keep its exact design: glossy green jelly body, small horn, big white cartoon eyes, purple waist pouch with its own cartoon eyes), create a vertical 9:16 photorealistic image: low-angle view from a sunny Korean apartment complex playground, the character is gigantic, rising from behind the apartment buildings and filling half of the blue sky, looking down. No text, no logos.
+   ```
+2. Flow **Frames to Video**에 그 이미지를 첫 프레임으로 넣고, 위 영상 프롬프트를 그대로 사용
+
+**예비안** (택이가 끝까지 안 닮으면): 처음 안의 지구 선물포장
 ```
 Cinematic space shot, slow push-in. Planet Earth seen from orbit, fully wrapped like a giant gift: a wide glossy neon green satin ribbon crosses over the entire planet in both directions, tied into an enormous shiny violet-purple bow on top. Sunlight glints across the satin ribbon; clouds and blue oceans are visible beneath it. Near the end, the giant bow tightens with a satisfying snap. SFX: a deep cinematic boom, then a bright sparkling bell ting. No background music. Photorealistic, epic scale, black starry space background, vertical 9:16 composition with the planet centered. The screen contains no subtitles, no text, no logos.
 ```
@@ -109,3 +128,17 @@ Claude가 API로 직접 만들어요. 키는 **채팅에 붙여넣지 말고** �
 - 세션 상단 클라우드 환경 메뉴 → **Edit** → 환경 변수에 `ELEVENLABS_API_KEY=...` 추가
 - 새 세션부터 적용돼요. 그러면 `node eleven.mjs`로 BGM, 효과음을 만들어 바로 편집에 넣어요.
 - 키가 없어도 편집은 돼요. 코드로 합성한 임시 음악이 대신 들어가요.
+
+---
+
+## 6. 공식 FAQ 반영 사항 (@naver.plus.store 인스타그램)
+
+| FAQ | 이 영상에서 |
+|---|---|
+| 넾다세일을 홍보하는 광고로 제작 | ✅ |
+| 구체적인 혜택 대신 **'넾다세일이 찾아온다'**에 초점 | ✅ 할인율·쿠폰 언급 없음. 엔드카드 카피는 KV 그대로 "거대한 혜택이 찾아온다!" |
+| **택이**는 생성해서 써도 됨 (공개된 이미지를 참고) | ✅ 컷 6. 참고 이미지는 공식 광고 장면에서 캡처 (`ref/`) |
+| KV 에셋을 분리해서 **로고만** 쓰는 건 OK, 로고 글자·모양을 **변형하면 미인정** | ✅ 로고는 원본 그대로(늘이기·색 바꾸기·다시 쓰기 없음). 배너 파편도 원본 이미지 그대로 잘라서 사용 |
+| 업로드 때 **@naver.plus.store** 태그하면 리그램 | 캡션에 꼭 넣기 |
+
+> AI가 로고를 다시 그리면 글자가 바뀌어서 '변형'이 돼요. **영상 속에 넾다세일 로고를 AI로 생성하지 마세요.** 로고는 엔드카드에서 원본만 써요.

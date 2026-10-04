@@ -12,7 +12,7 @@
     { "file": "clips/shot3.mp4", "in": 0.0, "out": 2.5, "say": 0.35, "caption": "이 트럭만큼.",          "size": 124, "meter": 0.62 },
     { "file": "clips/shot4.mp4", "in": 0.0, "out": 2.5, "say": 0.35, "caption": "저 아파트만큼은\n되겄지.", "size": 110, "meter": 0.84 },
     { "file": "clips/shot5.mp4", "in": 0.0, "out": 2.5, "say": 0.35, "caption": "우주만큼!!!",           "size": 176, "meter": 9.0 },
-    { "file": "clips/shot6.mp4", "in": 0.0, "out": 4.0, "say": 2.3,  "caption": "진짜로.", "type": "earth" }
+    { "file": "clips/shot6.mp4", "in": 0.0, "out": 4.0, "say": 2.3,  "caption": "진짜로.", "type": "finale" }
   ],
   "endcard": 5.0
 }

@@ -117,11 +117,21 @@ function drawEnd(t) {
   x.save();
   let o = up(0.55, 1); strokeText('거대한 혜택이 찾아온다!', W / 2, 990 + o, 66, K, null, 0, 800);
   o = up(0.7, 1); strokeText('10.26 ~ 11.8', W / 2, 1110 + o, 120, K, null, 0, 900);
+  // 공식 광고와 같은 마무리: 네이버 검색창에 '넾다세일'이 타이핑됨
   o = up(0.95, 1);
-  x.font = `800 46px ${FONT}`; const pw = x.measureText('네이버플러스 스토어에서 만나요').width + 80;
-  rrect(W / 2, 1240 + o, pw, 92, 46); x.fillStyle = K; x.fill();
-  x.fillStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle';
-  x.fillText('네이버플러스 스토어에서 만나요', W / 2, 1243 + o);
+  const NG = '#03C75A', sw = 720, sy = 1250 + o, sx = W / 2 - sw / 2;
+  rrect(W / 2, sy, sw, 104, 52); x.fillStyle = '#fff'; x.fill(); x.lineWidth = 6; x.strokeStyle = NG; x.stroke();
+  x.beginPath(); x.roundRect(sx + 26, sy - 30, 60, 60, 14); x.fillStyle = NG; x.fill();
+  x.font = `900 42px ${FONT}`; x.fillStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('N', sx + 56, sy + 2);
+  const q = '넾다세일', n = clamp(Math.floor((lt - 1.25) / 0.14) + 1, 0, q.length);
+  x.font = `800 48px ${FONT}`; x.fillStyle = '#111'; x.textAlign = 'left';
+  x.fillText(q.slice(0, n), sx + 112, sy + 2);
+  if (Math.floor(lt * 2.5) % 2 === 0) { const cw = x.measureText(q.slice(0, n)).width; x.fillStyle = NG; x.fillRect(sx + 116 + cw, sy - 24, 4, 48); }
+  // 마이크 아이콘
+  x.strokeStyle = NG; x.lineWidth = 5; x.lineCap = 'round';
+  x.beginPath(); x.roundRect(sx + sw - 70, sy - 26, 22, 36, 11); x.stroke();
+  x.beginPath(); x.arc(sx + sw - 59, sy - 2, 20, 0.15 * Math.PI, 0.85 * Math.PI); x.stroke();
+  x.beginPath(); x.moveTo(sx + sw - 59, sy + 18); x.lineTo(sx + sw - 59, sy + 28); x.stroke();
   x.restore();
   x.restore();
   // 들어오는 순간 흰 플래시
@@ -132,7 +142,7 @@ window.drawAt = t => {
   x.clearRect(0, 0, W, H);
   if (t >= TL.end0) return drawEnd(t);
   const s = TL.find(s => t >= s.t0 && t < s.t1) || TL[TL.length - 1];
-  if (s.type === 'earth') {
+  if (s.type === 'finale') {
     if (CFG.showCaptions) drawEarth(t, s);
     const k = TL.end0 - t; if (k < 0.12) { x.fillStyle = `rgba(255,255,255,${1 - k / 0.12})`; x.fillRect(0, 0, W, H); }
     return;

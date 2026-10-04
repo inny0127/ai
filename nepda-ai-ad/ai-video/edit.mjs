@@ -105,7 +105,7 @@ if (!fs.existsSync(path.join(AUD, 'eleven_bgm.mp3'))) { // 합성 BGM은 컷 길
 }
 const bgm = pick('bgm'), boing = pick('boing'), slam = pick('slam');
 console.log('audio:', [bgm, boing, slam].map(f => path.basename(f)).join(', '));
-const people = shots.filter(s => s.type !== 'earth'), earth0 = shots.find(s => s.type === 'earth')?.t0 ?? end0;
+const people = shots.filter(s => s.type !== 'finale'), earth0 = shots.find(s => s.type === 'finale')?.t0 ?? end0;
 const ms = t => Math.max(0, Math.round(t * 1000));
 const fc = [
   `[1:a]aresample=48000,volume=1.15,asplit=2[dlg][key]`,

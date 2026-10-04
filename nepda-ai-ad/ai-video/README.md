@@ -1,6 +1,7 @@
 # A안 「얼마나 크냐면」 — 실사 AI 영상 (Veo 3.1)
 
-1. **`1_Flow_제작가이드.md`** — Flow 설정, 크레딧 예산, 컷별 복붙 프롬프트, 고르는 기준
+1. **`2_Dreamina_제작가이드.md`** — ★ 현재 진행: Dreamina(Seedance 2.5) 가입·설정·복붙 프롬프트
+   `1_Flow_제작가이드.md` — Flow(Veo 3.1)용 같은 프롬프트 (모자라는 컷 대체용)
 2. 고른 클립을 `clips/shot0.mp4` ~ `clips/shot6.mp4`로 넣기
 3. `edit.json`에서 컷마다 쓸 구간(`in`/`out`)과 대사 시작(`say`) 맞추기
 4. `node edit.mjs` → `out/얼마나크냐면_9x16.mp4`

@@ -138,7 +138,7 @@ Dreamina에는 이번에 쓸 작업 공간이 **2개** 있어요.
 
 > 공통: 키프레임은 **AI Image (Seedream, 9:16, 2K)** / 영상은 **AI Video (Seedance 2.5, 9:16, 720p, 소리 켜기)**, 길이는 컷별 표대로
 > 레퍼런스 이미지는 `레퍼런스_이미지.zip`에 있어요. 택이 컷에는 **3~5장만** 골라 넣으세요(너무 많으면 섞여요).
-> 제품 사진이 부족하면 zip 안 README의 **'제품 시트' 프롬프트**로 Dreamina에서 깔끔한 무브랜드 제품 이미지를 만들어 같이 넣으세요.
+> 택이는 **2026 버전(파우치에 눈 2개)**으로 맞춰요. 제품은 삼성·LG 공식 이미지를 넣어요.
 
 ### 컷 1 — 우주: 초록 불덩이(택이)가 대기권으로 (0~2초)
 
@@ -148,7 +148,7 @@ Dreamina에는 이번에 쓸 작업 공간이 **2개** 있어요.
 | 길이 | **4초** |
 | 파일 이름 | `w1_meteor.mp4` |
 
-**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: taki_01, taki_08)
+**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: taki 01·03·14)
 ```
 View from low Earth orbit over the Korean Peninsula at golden hour, the curvature of the Earth and the thin glowing blue atmosphere visible. A blazing neon-green fireball with a long glowing trail is entering the atmosphere; inside the green fire is the colossal green character from the reference images (round glossy green jelly body, small horn on top, big white cartoon eyes, short stubby arms and legs, purple waist pouch with its own pair of cartoon eyes), curled up. Epic, photorealistic space cinematography. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
 ```
@@ -185,7 +185,7 @@ Low-angle medium shot facing a group of Korean beachgoers on Haeundae beach in B
 | 길이 | **5초** |
 | 파일 이름 | `w2_impact.mp4` |
 
-**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: taki_01, taki_03, taki_09)
+**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: taki 01·06·15)
 ```
 Low wide shot from behind a row of beachgoers on Haeundae beach, seen from behind, all looking up; a gigantic blazing neon-green fireball fills the upper sky, coming straight down toward the sea right in front of them, its glow lighting the whole beach green. Calm blue sea only a hundred meters ahead. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
 ```
@@ -206,14 +206,14 @@ Low wide shot from behind a row of beachgoers on Haeundae beach, seen from behin
 | 길이 | **4초** |
 | 파일 이름 | `w3_wave.mp4` |
 
-**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: products/ 사진 3~5장 + 제품 시트)
+**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: products 01(라인업) + TV·냉장고·노트북·세탁기 1장씩)
 ```
-From Haeundae beach looking out to sea: right where the giant object landed, a colossal turquoise ocean wave as tall as skyscrapers rises, its curling face backlit by the sun so the water is crystal clear and translucent. Suspended inside the glowing water, clearly visible like objects in glass, are hundreds of modern home appliances and gadgets like those in the reference images — flat-screen TVs, laptops, refrigerators, washing machines, headphones, sneakers, smartphones — all unbranded, no logos. Tiny people on the beach in the foreground. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
+From Haeundae beach looking out to sea: right where the giant object landed, a colossal turquoise ocean wave as tall as skyscrapers rises, its curling face backlit by the sun so the water is crystal clear and translucent. Suspended inside the glowing water, clearly visible like objects in glass, are hundreds of modern home appliances and gadgets like those in the reference images — flat-screen TVs, laptops, refrigerators, washing machines, headphones, sneakers, smartphones — no visible brand logos or text. Tiny people on the beach in the foreground. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
 ```
 
 **2) 영상** (AI Video, Seedance 2.5, 이미지 → 영상)
 ```
-0–1.5s: the colossal translucent wave swells even higher, sunlight shining through it. 1.5–4s: it rolls toward the beach and the products inside the clear water tumble slowly, glittering; the camera slowly pushes in. Spectacular and joyful, not scary. No logos. No text.
+0–1.5s: the colossal translucent wave swells even higher, sunlight shining through it. 1.5–4s: it rolls toward the beach and the products inside the clear water tumble slowly, glittering; the camera slowly pushes in. Spectacular and joyful, not scary. No visible logos. No text.
 ```
 
 ---
@@ -226,14 +226,14 @@ From Haeundae beach looking out to sea: right where the giant object landed, a c
 | 길이 | **4초** |
 | 파일 이름 | `w3b_side.mp4` |
 
-**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: products/ 사진 2~3장)
+**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: products 01 + 냉장고·TV 1장씩)
 ```
 Side view along Haeundae beach: the profile of a colossal curling turquoise wave towering over the shoreline like a glass cathedral, products — TVs, laptops, refrigerators — visible inside the backlit water, tiny people on the beach looking up, the hotel skyline in the distance. Epic scale, side angle from the sand. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
 ```
 
 **2) 영상** (AI Video, Seedance 2.5, 이미지 → 영상)
 ```
-The camera holds a side angle as the colossal curling wave rolls past along the shore, its translucent lip curling over, products tumbling inside the glowing water, spray blowing off the crest. Spectacular, not scary. No logos. No text.
+The camera holds a side angle as the colossal curling wave rolls past along the shore, its translucent lip curling over, products tumbling inside the glowing water, spray blowing off the crest. Spectacular, not scary. No visible logos. No text.
 ```
 
 ---
@@ -246,14 +246,14 @@ The camera holds a side angle as the colossal curling wave rolls past along the 
 | 길이 | **5초** |
 | 파일 이름 | `w4_welcome.mp4` |
 
-**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: products/ 사진 3~5장)
+**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: products 01 + 냉장고·세탁기·TV·노트북 1장씩)
 ```
-Low-angle shot from behind a row of Korean beachgoers on Haeundae beach, seen from behind; in front of them, large unbranded products — flat-screen TVs, refrigerators, washing machines, laptops, sneakers — are falling out of the sky from a breaking wave of foam and slamming into the sand, half buried at angles, sand bursting up around them. A grandmother holds a red plastic basin over her head. Bright sunny day, dramatic slow motion. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
+Low-angle shot from behind a row of Korean beachgoers on Haeundae beach, seen from behind; in front of them, large products — flat-screen TVs, refrigerators, washing machines, laptops, sneakers — are falling out of the sky from a breaking wave of foam and slamming into the sand, half buried at angles, sand bursting up around them. A grandmother holds a red plastic basin over her head. Bright sunny day, dramatic slow motion. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
 ```
 
 **2) 영상** (AI Video, Seedance 2.5, 이미지 → 영상)
 ```
-Slow motion. 0–2.5s: as the giant wave breaks into foam, dozens of products — TVs, refrigerators, washing machines, laptops, sneakers — fall out of the sky and slam into the sand right in front of the people, sticking in at angles with big bursts of sand, one after another; the people flinch. 2.5–5s: the sand settles and the people burst into cheers, jumping and running toward the products. Nobody is hurt. Spectacular and joyful. No logos. No text.
+Slow motion. 0–2.5s: as the giant wave breaks into foam, dozens of products — TVs, refrigerators, washing machines, laptops, sneakers — fall out of the sky and slam into the sand right in front of the people, sticking in at angles with big bursts of sand, one after another; the people flinch. 2.5–5s: the sand settles and the people burst into cheers, jumping and running toward the products. Nobody is hurt. Spectacular and joyful. No visible logos. No text.
 ```
 - 제품이 **사람들 바로 앞에 꽂히는** 게 핵심이에요. 사람에게 떨어지거나 다치는 느낌이면 탈락이에요.
 
@@ -267,7 +267,7 @@ Slow motion. 0–2.5s: as the giant wave breaks into foam, dozens of products �
 | 길이 | **5초** |
 | 파일 이름 | `w5_taki.mp4` |
 
-**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: taki_03, taki_05, taki_08, taki_11)
+**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: taki 01·10·12·13·14)
 ```
 Extreme low-angle shot from the sand of Haeundae beach, past the heads of a cheering crowd seen from behind: towering in the shallow sea just offshore stands the colossal green character from the reference images (round glossy green jelly body, small horn on top, big white cartoon eyes, short stubby arms and legs, purple waist pouch with its own pair of cartoon eyes), so gigantic that it dwarfs the high-rise hotels and its head is near the clouds, standing upright on its short legs with the purple pouch above the water, water streaming off its glossy body. Products lie scattered on the sand in the foreground. Golden afternoon light, epic scale, photorealistic VFX creature composited into a real beach. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
 ```
@@ -288,9 +288,9 @@ Extreme low-angle shot from the sand of Haeundae beach, past the heads of a chee
 | 길이 | **10초** |
 | 파일 이름 | `w6_aerial.mp4` |
 
-**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: taki_03, products/ 2~3장)
+**1) 키프레임** (AI Image, Seedream, 9:16, 2K — 레퍼런스: taki 01·12 + products 01·08)
 ```
-High aerial drone shot over Haeundae beach in Busan in golden afternoon light, looking down at an angle from above the sea toward the beach. The entire long sandy beach is covered with thousands of colorful products — flat-screen TVs, laptops, refrigerators, washing machines, sneakers, headphones, shopping bags — and crowds of happy people celebrating among them; the high-rise skyline behind; in the sea, the colossal green character from the reference images (round glossy green jelly body, small horn on top, big white cartoon eyes, short stubby arms and legs, purple waist pouch with its own pair of cartoon eyes) stands waving. All products unbranded, no logos. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
+High aerial drone shot over Haeundae beach in Busan in golden afternoon light, looking down at an angle from above the sea toward the beach. The entire long sandy beach is covered with thousands of colorful products — flat-screen TVs, laptops, refrigerators, washing machines, sneakers, headphones, shopping bags — and crowds of happy people celebrating among them; the high-rise skyline behind; in the sea, the colossal green character from the reference images (round glossy green jelly body, small horn on top, big white cartoon eyes, short stubby arms and legs, purple waist pouch with its own pair of cartoon eyes) stands waving. No visible brand logos or text. Shot on ARRI Alexa 35 with a vintage anamorphic lens, cinematic blockbuster film still, natural light, subtle atmospheric haze, Kodak 5219 film grain, realistic color, vertical 9:16 composition. No readable text, no signage, no logos, no watermarks.
 ```
 
 **2) 영상** (AI Video, Seedance 2.5, 이미지 → 영상)
@@ -326,7 +326,7 @@ High aerial drone shot over Haeundae beach in Busan in golden afternoon light, l
 | 택이가 안 닮음 | 참고 이미지 2장을 꼭 첨부. 그래도 안 되면 Smart Edit로 눈·뿔·파우치만 수정 |
 | 첫·끝 프레임이 이상하게 이어짐 | 끝 프레임의 사람·건물 위치가 첫 프레임과 많이 다른 것. 끝 프레임을 다시 만들기 |
 | 파도가 무섭게(재난처럼) 나옴 | 프롬프트에 `cheerful, whimsical, bright, sunny, not a disaster, no destruction` 추가. 사람들이 웃는 장면이 꼭 이어지게 |
-| 상품에 **실제 브랜드 로고**(사과, 삼성 등)가 생김 | 상표권 문제가 될 수 있어요. 다시 생성하거나 Smart Edit로 로고만 지우기. 프롬프트의 `unbranded, no logos` 유지 |
+| 상품에 브랜드 로고·글자가 깨져서 생김 | AI가 그린 글자는 대부분 깨져요. Smart Edit로 지우거나 다시 생성. 프롬프트의 `no visible brand logos or text` 유지 |
 | 물속 상품이 안 보이고 그냥 파도만 나옴 | 키프레임부터 다시. `backlit, crystal clear translucent water, products clearly visible inside like objects in glass` 강조 |
 | 크레딧 부족 | 단순한 컷(컷 2·4)은 480p로, 또는 Standard 업그레이드 |
 | 결과에 워터마크가 있음 | 유료 플랜인지, 다운로드 옵션에서 워터마크 없는 버전을 골랐는지 확인 |

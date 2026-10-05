@@ -70,6 +70,41 @@ def meteor(g=1.0):
     x = (roar * 1.4 + hiss + tone) * np.minimum(1, (2.4 - t) / 0.05)
     return verb(np.tanh(x * 1.5), 0.25) * g
 
+def sting(g=1.0):
+    # 공포 점프스케어: 불협화음 현 스크리치 + 저음 타격
+    t = tt(1.6); x = np.zeros(len(t))
+    for f0 in (466.2, 493.9, 698.5, 739.99, 1046.5):
+        ph = 2 * np.pi * f0 * t + 0.004 * f0 * np.sin(2 * np.pi * 6.5 * t)
+        x += (2 * ((ph / (2 * np.pi)) % 1) - 1)
+    x = bp(x / 5 + bp(rng.standard_normal(len(t)), 2500, 8000) * 0.5, 300, 9000)
+    x = np.tanh(x * 2.5) * np.minimum(1, t / 0.004) * np.exp(-t / 0.5)
+    return verb(x * 0.8 + thump(0.9)[:len(t)], 0.3) * g
+
+def heartbeat(g=1.0):
+    def lub(v): s = tt(0.25); return np.sin(2 * np.pi * np.cumsum(45 + 25 * np.exp(-s * 30)) / SR) * np.exp(-s * 18) * v
+    x = np.zeros(int(0.7 * SR)); a, b = lub(1.0), lub(0.7)
+    x[:len(a)] += a; i = int(0.22 * SR); x[i:i + len(b)] += b
+    return lp(x, 160) * g
+
+def beep(g=1.0):
+    t = tt(0.11); return np.sin(2 * np.pi * 2093 * t) * np.minimum(1, t / 0.003) * np.minimum(1, (0.11 - t) / 0.01) * 0.35 * g
+
+def unlock(g=1.0):
+    # 디지털 도어락 열림 멜로디 + 모터 '드르륵'
+    x = np.zeros(int(1.1 * SR))
+    for j, f in enumerate((1568, 1760, 2093, 2637)):
+        b = bell(f, 0.3) * 0.25; i = int(j * 0.09 * SR); x[i:i + len(b)] += b
+    t = tt(0.35); motor = bp(rng.standard_normal(len(t)), 200, 1200) * (1 + np.sign(np.sin(2 * np.pi * 38 * t))) * 0.12
+    i = int(0.45 * SR); x[i:i + len(t)] += motor
+    return x * g
+
+def popper(g=1.0):
+    t = tt(0.9); x = hp(rng.standard_normal(len(t)), 700) * np.exp(-t / 0.035) * 0.9
+    for k in range(40):  # 흩날리는 꽃가루
+        s = rng.uniform(0.05, 0.85); i = int(s * SR); n = int(0.01 * SR)
+        x[i:i + n] += bp(rng.standard_normal(n), 3000, 9000) * 0.05 * (1 - s)
+    return verb(x, 0.2) * g
+
 def kick(v=0.9):
     t = tt(0.35); f = 50 + 110 * np.exp(-t * 28)
     return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 9) * v
@@ -103,13 +138,16 @@ dr *= (0.25 + 0.75 * (t / (b - a)) ** 1.2) * 0.45 * np.minimum(1, (b - a - t) / 
 put(st(dr, 0.1), a)
 
 # 첫 '쿵' 직후 귀가 먹먹해지는 이명 (영화식 충격 표현)
-if C['events']:
+hits = [e for e in C['events'] if e['type'] in ('thump', 'meteor', 'braam')]
+if hits:
     t = tt(2.6); ring = np.sin(2 * np.pi * 3150 * t) * np.minimum(1, t / 0.15) * np.exp(-t / 0.9) * 0.05
-    put(st(ring, 0.3), C['events'][0]['t'] + 0.25)
+    put(st(ring, 0.3), hits[0]['t'] + 0.25)
 
+FX = {'thump': thump, 'braam': braam, 'boing': boing, 'meteor': meteor, 'sting': sting,
+      'heartbeat': heartbeat, 'beep': beep, 'unlock': unlock, 'popper': popper}
 for e in C['events']:
     k, g, at = e['type'], e.get('gain', 1), e['t']
-    put({'thump': thump, 'braam': braam, 'boing': boing, 'meteor': meteor}[k](g), at)
+    put(FX[k](g), at)
 
 # 엔드카드: 따뜻한 화음 + 4음 징글
 J = C.get('jingle') if C.get('jingle') is not None else end0

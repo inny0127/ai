@@ -123,7 +123,7 @@ function drawEnd(t, start = TL.end0, over = false) {
   }
   const up = (d, k) => { const a = ease((lt - d) / 0.35); x.globalAlpha = a; return (1 - a) * 40 * k; };
   x.save();
-  let o = up(0.55, 1); strokeText('거대한 혜택이 찾아온다!', W / 2, 990 + o, 66, K, null, 0, 800);
+  let o = up(0.55, 1); strokeText(CFG.tagline || '거대한 혜택이 찾아온다!', W / 2, 990 + o, 66, K, null, 0, 800);
   o = up(0.7, 1); strokeText('10.26 ~ 11.8', W / 2, 1110 + o, 120, K, null, 0, 900);
   // 공식 광고와 같은 마무리: 네이버 검색창에 '넾다세일'이 타이핑됨
   o = up(0.95, 1);

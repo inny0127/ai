@@ -1,6 +1,6 @@
 {
-  "_help": "「거대한 혜택이 밀려온다」 최종 편집표 (원샷). Seedance 30초 1회 생성(clips/gen30.mp4)을 3D 레퍼런스 컷 위치대로 자름. 실제 결과의 컷이 어긋나면 in/out만 조정",
-  "output": "거대한혜택이밀려온다_9x16.mp4",
+  "_help": "3D 레퍼런스(클레이) 영상에 음악·목소리·자막·KV를 얹은 미리보기",
+  "output": "밀려온다_3D레퍼런스_미리보기.mp4",
   "fps": 24,
   "showQuestion": false,
   "showCaptions": false,
@@ -11,10 +11,10 @@
   "sfxGain": 0.8,
   "shots": [
     {
-      "file": "clips/gen30.mp4",
+      "file": "../reference_video/taki_wave_3d_reference.mp4",
       "in": 0,
       "out": 2.0,
-      "vol": 0.5,
+      "vol": 0,
       "sfx": [
         {
           "t": 0.0,
@@ -25,10 +25,10 @@
       ]
     },
     {
-      "file": "clips/gen30.mp4",
+      "file": "../reference_video/taki_wave_3d_reference.mp4",
       "in": 2.0,
       "out": 4.9,
-      "vol": 0.5,
+      "vol": 0,
       "sfx": [
         {
           "t": 0.8,
@@ -39,10 +39,10 @@
       ]
     },
     {
-      "file": "clips/gen30.mp4",
+      "file": "../reference_video/taki_wave_3d_reference.mp4",
       "in": 4.9,
       "out": 9.4,
-      "vol": 0.5,
+      "vol": 0,
       "sfx": [
         {
           "t": 0.0,
@@ -59,16 +59,16 @@
       ]
     },
     {
-      "file": "clips/gen30.mp4",
+      "file": "../reference_video/taki_wave_3d_reference.mp4",
       "in": 9.4,
       "out": 11.7,
-      "vol": 0.5
+      "vol": 0
     },
     {
-      "file": "clips/gen30.mp4",
+      "file": "../reference_video/taki_wave_3d_reference.mp4",
       "in": 11.7,
       "out": 13.5,
-      "vol": 0.5,
+      "vol": 0,
       "sfx": [
         {
           "t": 0.0,
@@ -79,10 +79,10 @@
       ]
     },
     {
-      "file": "clips/gen30.mp4",
+      "file": "../reference_video/taki_wave_3d_reference.mp4",
       "in": 13.5,
       "out": 16.8,
-      "vol": 0.5,
+      "vol": 0,
       "sfx": [
         {
           "t": 0.8,
@@ -105,10 +105,10 @@
       ]
     },
     {
-      "file": "clips/gen30.mp4",
+      "file": "../reference_video/taki_wave_3d_reference.mp4",
       "in": 16.8,
       "out": 20.8,
-      "vol": 0.5,
+      "vol": 0,
       "sfx": [
         {
           "t": 1.7,
@@ -125,10 +125,10 @@
       }
     },
     {
-      "file": "clips/gen30.mp4",
+      "file": "../reference_video/taki_wave_3d_reference.mp4",
       "in": 20.8,
       "out": 29.5,
-      "vol": 0.5,
+      "vol": 0,
       "sfx": [
         {
           "t": 1.08,
@@ -144,7 +144,7 @@
   "endcard": 0,
   "tracks": [
     {
-      "file": "music/zarathustra_macleod_ccby.ogg",
+      "file": "../music/zarathustra_macleod_ccby.ogg",
       "from": 0.0,
       "to": 9.6,
       "at": 1.5,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "file": "music/zarathustra_macleod_ccby.ogg",
+      "file": "../music/zarathustra_macleod_ccby.ogg",
       "from": 67.2,
       "to": 86.0,
       "at": 10.8,
@@ -179,27 +179,27 @@
       ]
     },
     {
-      "file": "voice/react1_f.wav",
+      "file": "../voice/react1_f.wav",
       "at": 2.4,
       "gain": 1.2
     },
     {
-      "file": "voice/react2_m.wav",
+      "file": "../voice/react2_m.wav",
       "at": 3.7,
       "gain": 1.2
     },
     {
-      "file": "voice/react3_m.wav",
+      "file": "../voice/react3_m.wav",
       "at": 5.3,
       "gain": 1.3
     },
     {
-      "file": "voice/narration_pick.wav",
+      "file": "../voice/narration_pick.wav",
       "at": 18.5,
       "gain": 1.4
     },
     {
-      "file": "voice/brand_call.wav",
+      "file": "../voice/brand_call.wav",
       "at": 21.9,
       "gain": 1.5
     }

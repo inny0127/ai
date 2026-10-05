@@ -156,8 +156,9 @@ Photoreal film still. Extreme low angle from the sand of Haeundae Beach, past th
 레퍼런스: ① `storyboard/layout_C2_aerial.jpg` ② `taki_12_standing_fullbody_2026` ③ `product_01_samsung_appliance_lineup_white` ④ `product_08_samsung_tv_livingroom`
 ```
 Image 1 is a rough 3D layout: copy only its camera angle and framing, not its look. Image 2 shows the character Taki. Images 3–4 show product designs only.
-Photoreal aerial drone still over Haeundae Beach, Busan, in golden afternoon light, looking down at an angle from above the sea. The whole long sandy beach is covered with thousands of products like those in Images 3–4 — TVs, refrigerators, washing machines, laptops — and crowds of happy people among them; high-rise skyline behind. At the right edge, in the sea, Taki stands waving. The center of the frame is calm sea and sand. Light film grain. No brand logos, no text, no signage.
+Photoreal aerial drone still over Haeundae Beach, Busan, in golden afternoon light, looking down at an angle from above the sea. The whole long sandy beach is covered with thousands of products like those in Images 3–4 — TVs, refrigerators, washing machines, laptops — and crowds of happy people among them; high-rise skyline behind. The drone is just above and behind Taki, who stands in the sea in the lower right foreground: we see Taki from above — the top of its huge round glossy green head, the small horn, its shoulders and the purple pouch below — as it waves one stubby arm toward the beach. The center of the frame is calm sea and sand. Light film grain. No brand logos, no text, no signage.
 ```
+- 택이가 **오른쪽 아래에서 위에서 내려다본 모습**(머리 꼭대기·뿔·어깨·보라 파우치)으로 보이는 결과를 고르세요. 택이가 작게 멀리 나오면 `Taki fills the lower right third of the frame`을 추가하세요.
 - 가운데에 KV 로고가 얹혀요. **화면 가운데가 복잡하지 않은** 결과를 고르세요.
 
 ---
@@ -286,7 +287,7 @@ A 14-second vertical cinematic ending. Taki stands in the sea off Haeundae Beach
 
 Shot 1 (0–5s): Opens on @Image4. Extreme low angle from the sand past the cheering crowd. Taki stands upright in the shallow sea, water streaming off its glossy body, and slowly looks down at the tiny people. At 2s it gives a big playful wink like @Image3, and the eyes on its purple pouch blink too. The crowd cheers and waves. Slow tilt up.
 Hard cut.
-Shot 2 (5–14s): High aerial drone shot, matching @Image5. The whole of Haeundae Beach is covered with thousands of products and happy people; Taki waves from the sea at the right edge. The camera slowly rises and pulls back. Keep the center of the frame calm.
+Shot 2 (5–14s): High aerial drone shot, matching @Image5. The whole of Haeundae Beach is covered with thousands of products and happy people; The drone starts just above Taki's head in the lower right foreground, so we see Taki from above: the top of its huge round green head, the small horn, its shoulders and purple pouch. Taki tilts its head up toward the camera and waves. The camera slowly rises and pulls back, keeping Taki in the lower right corner. Keep the center of the frame calm.
 
 Continuity
 Same beach, same golden light, Taki looks the same in both shots.

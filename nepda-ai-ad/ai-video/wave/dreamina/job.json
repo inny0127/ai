@@ -1,0 +1,69 @@
+{
+ "jobKey": "wave-30s",
+ "canvasId": "22a5af09-c5fb-4756-ad9d-024563de8546",
+ "webUrl": "https://dreamina.capcut.com/ai-tool/ai-canvas/22a5af09-c5fb-4756-ad9d-024563de8546",
+ "inputs": {
+  "00_meteor_hero": {
+   "resourceId": "344d3329-9425-4613-bdf6-0fd675e016aa",
+   "nodeId": "node_vq1hk9hd59"
+  },
+  "02_faces": {
+   "resourceId": "43913bf3-27b3-417b-a865-251ac98b11e0",
+   "nodeId": "node_zy5nsckk9e"
+  },
+  "03_impact": {
+   "resourceId": "a6b1b334-98c8-4586-9655-82f2c9c70c10",
+   "nodeId": "node_hpce4kmmjq"
+  },
+  "04_wave": {
+   "resourceId": "1b27228a-e02c-4dda-9002-33930a65657d",
+   "nodeId": "node_t0yqh6vdb7"
+  },
+  "05_side_wave": {
+   "resourceId": "c1a897e4-f87e-49f9-8f20-ff3f100f31b7",
+   "nodeId": "node_5dh8eehb1e"
+  },
+  "06_crash": {
+   "resourceId": "d0f0cda6-b49f-4039-bac2-36f798d3d19a",
+   "nodeId": "node_yrhvqdw8th"
+  },
+  "07_wink": {
+   "resourceId": "e59f1986-9b50-4712-b628-3f4c41ec7803",
+   "nodeId": "node_h98nvsrmyf"
+  },
+  "08_aerial": {
+   "resourceId": "19ad0b24-3f40-4a85-9615-00c983a7ec09",
+   "nodeId": "node_z1gbycyx47"
+  },
+  "09_wave_hello": {
+   "resourceId": "2152ec3f-8902-4e53-8f3a-3e61eafe3799",
+   "nodeId": "node_5j079nmsd3"
+  },
+  "taki_ref_01_body": {
+   "resourceId": "6a7413ea-5937-489e-81b7-1a907b32c50a",
+   "nodeId": "node_crhfpayt4q"
+  },
+  "taki_ref_12_full2026": {
+   "resourceId": "d4376d13-7553-4127-b82a-41b8dca09212",
+   "nodeId": "node_1mfrx3dsgk"
+  },
+  "taki_ref_13_pouch": {
+   "resourceId": "18d4c51b-596a-456a-880e-7bef7d9c65bc",
+   "nodeId": "node_7f65eny2mr"
+  }
+ },
+ "items": {
+  "gen30_480p": {
+   "nodeId": "node_dmymxa117y",
+   "submitId": "f73c6b9b-922e-4aae-acba-b05f8643f752",
+   "model": "seedance_2.5",
+   "mode": "m2v",
+   "resolution": "480p",
+   "duration": 30,
+   "quotedCredits": 510,
+   "creditCeiling": 600,
+   "selectedResourceId": "6b103452-680a-434a-b71e-61a13c85fc55"
+  }
+ },
+ "prompt": "Taki is the giant green mascot in {{node:node_crhfpayt4q}} and {{node:node_1mfrx3dsgk}}: glossy green jelly body that narrows to a small horn on top, big white cartoon eyes, short line mouth, stubby legs, short thick arms, and a purple waist pouch with two cartoon eyes like {{node:node_7f65eny2mr}}. Taki looks identical in every shot.\n\nA 30-second vertical commercial at Haeundae Beach, Busan. Photoreal live-action blockbuster look, anamorphic lens, warm afternoon sun, light film grain. A joyful spectacle, not a disaster. Each shot starts from its storyboard frame; hard cuts between shots.\n\n0–2s: Starts on {{node:node_vq1hk9hd59}}. Taki, curled up inside a blazing green fireball, streaks down through Earth's atmosphere toward Korea. The camera tracks it.\n2–5s: Matches {{node:node_zy5nsckk9e}}. Korean beachgoers look up past the camera in shock; a woman covers her mouth, a man points at the sky. Green light grows on their faces. Slow push-in.\n5–9.5s: Matches {{node:node_hpce4kmmjq}}. From behind the crowd, the green fireball drops into the sea about 100 meters ahead and slams into the water at 8s; a huge tower of white-green water explodes upward and spray rains on the people. The camera shakes.\n9.5–11.5s: Matches {{node:node_t0yqh6vdb7}}. A skyscraper-tall clear turquoise wave rises toward the beach with refrigerators, TVs, washing machines and laptops tumbling inside it.\n11.5–13.5s: Matches {{node:node_5dh8eehb1e}}. Side view of the curling wave rolling along the shore, products inside, the hotel skyline behind.\n13.5–17s: Matches {{node:node_yrhvqdw8th}}. Slow motion: the wave breaks at the waterline and the products slam into the sand right in front of the cheering crowd with bursts of sand and foam. Nobody is hurt.\n17–21s: Matches {{node:node_h98nvsrmyf}}. Low angle past the cheering crowd: Taki stands in the shallow sea, taller than the hotel towers, water streaming off its glossy body. At 18.5s it gives a big playful wink, then waves.\n21–25.5s: Matches {{node:node_z1gbycyx47}}. High drone shot looking down at the whole beach covered with products and happy people; Taki stands in the sea below the camera, seen from above.\n25.5–30s: Matches {{node:node_5j079nmsd3}}. The drone pulls closer: Taki looks up at the camera and waves happily as the drone slowly rises.\n\nNo on-screen text, subtitles, signage, logos or watermarks. No brand logos on the products."
+}

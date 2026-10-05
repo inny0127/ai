@@ -1,0 +1,39 @@
+{
+  "_help": "「그것이 찾아온다」 공포 패러디 편집표 — 컷별 Seedance 2.5(첫 프레임 고정) 클립. 도어락 키 입력: C2 원본 1.55/2.15/3.15초, 잠금해제 3.4초",
+  "output": "그것이찾아온다_9x16.mp4",
+  "fps": 24,
+  "showQuestion": false,
+  "showCaptions": false,
+  "grade": true,
+  "drone": [2.5, 17.5],
+  "music": { "start": 20.1, "bpm": 124 },
+  "jingle": 22.7,
+  "sfxGain": 0.9,
+  "tagline": "넾다세일이 찾아온다!",
+  "shots": [
+    { "file": "clips/C1_bed.mp4", "in": 0.5, "out": 3.0, "vol": 0.6 },
+    { "file": "clips/C2_doorlock.mp4", "in": 1.2, "out": 4.9, "vol": 0.4,
+      "sfx": [
+        { "t": 0.35, "type": "beep" }, { "t": 0.95, "type": "beep" },
+        { "t": 1.45, "type": "beep" }, { "t": 1.95, "type": "beep" },
+        { "t": 2.2, "type": "unlock", "gain": 1.1 }
+      ] },
+    { "file": "clips/C3_freeze.mp4", "in": 0.3, "out": 2.8, "vol": 0.3,
+      "sfx": [ { "t": 0.3, "type": "heartbeat", "gain": 1.2 }, { "t": 1.2, "type": "heartbeat", "gain": 1.3 }, { "t": 2.0, "type": "heartbeat", "gain": 1.4 } ] },
+    { "file": "clips/C4_silhouette.mp4", "in": 1.2, "out": 4.6, "vol": 0.7,
+      "sfx": [ { "t": 2.0, "type": "thump", "gain": 0.9, "shake": 0.7 } ] },
+    { "file": "clips/C5_shadow.mp4", "in": 0.5, "out": 3.5, "vol": 0.6,
+      "sfx": [ { "t": 0.4, "type": "thump", "gain": 0.55, "shake": 0.35 }, { "t": 1.5, "type": "thump", "gain": 0.65, "shake": 0.45 }, { "t": 2.6, "type": "thump", "gain": 0.75, "shake": 0.55 } ] },
+    { "file": "clips/C6_duvet.mp4", "in": 0.0, "out": 3.0, "vol": 0.8,
+      "text": { "str": "그것이 찾아온다…", "at": 0.5, "until": 2.6, "size": 92, "y": 1560 } },
+    { "file": "clips/C7_jumpscare.mp4", "in": 0.0, "out": 2.0, "vol": 0.9,
+      "sfx": [ { "t": 0.05, "type": "sting", "gain": 1.0, "shake": 1.0 } ] },
+    { "file": "clips/C8_reveal.mp4", "in": 0.0, "out": 6.0, "vol": 0.6,
+      "sfx": [ { "t": 0.0, "type": "popper", "gain": 0.9 }, { "t": 2.65, "type": "thump", "gain": 0.5 } ],
+      "type": "kvover", "kvAt": 2.6 }
+  ],
+  "endcard": 0,
+  "tracks": [
+    { "file": "voice/brand_call.wav", "at": 24.0, "gain": 1.5 }
+  ]
+}
